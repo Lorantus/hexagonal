@@ -1,7 +1,7 @@
 package com.experiment.hexagonal.infrastructure.client.core.spi;
 
+import com.experiment.hexagonal.infrastructure.application.core.model.AuthentificationPrincipal;
+
 public interface ClientAuthentification {
-    void setLogin(String login);
-    void setPasswordHash(String passwordHash);
-    boolean isAuthentified();
+    boolean isAuthentified(AuthentificationPrincipal authentificationPrincipal);
 }

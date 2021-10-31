@@ -1,12 +1,14 @@
 package com.experiment.hexagonal.core.model.entity;
 
 import com.experiment.hexagonal.core.model.valueobject.Gender;
+import com.experiment.hexagonal.core.model.valueobject.Password;
+
 import java.util.Objects;
 
 public class User {    
     private final UserId id;
     private String email;
-    private String passwordHash;
+    private Password passwordHash;
     private Gender gender;
     private String fullName;
 
@@ -26,11 +28,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
+    public Password getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPasswordHash(String passwordHash) {
+    public void setPasswordHash(Password passwordHash) {
         this.passwordHash = passwordHash;
     }
 

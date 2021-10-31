@@ -3,24 +3,24 @@ package com.experiment.hexagonal.core.api.model;
 import java.util.Objects;
 
 public final class AuthentificationDto {
-    private final String login;
-    private final String passwordHash;
+    private final LoginDto login;
+    private final PasswordDto passwordHash;
 
-    private AuthentificationDto(String login, String passwordHash) {
+    private AuthentificationDto(LoginDto login, PasswordDto passwordHash) {
         this.login = login;
         this.passwordHash = passwordHash;
     }
 
-    public String getLogin() {
+    public LoginDto getLogin() {
         return login;
     }
 
-    public String getPasswordHash() {
+    public PasswordDto getPasswordHash() {
         return passwordHash;
     }
-    
-    public static AuthentificationDto create(String email, String passwordHash) {
-        return new AuthentificationDto(email, passwordHash);
+
+    public static AuthentificationDto create(LoginDto login, PasswordDto passwordHash) {
+        return new AuthentificationDto(login, passwordHash);
     }
 
     @Override

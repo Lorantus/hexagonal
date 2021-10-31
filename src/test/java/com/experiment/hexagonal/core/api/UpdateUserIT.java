@@ -2,6 +2,7 @@ package com.experiment.hexagonal.core.api;
 
 import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
+import com.experiment.hexagonal.core.api.model.PasswordDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
@@ -15,7 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfigTest.class})
@@ -23,10 +24,10 @@ public class UpdateUserIT {
     
     @Autowired
     private UpdateUser updateUser;
-    
+
     @Autowired
     private CreateUser createUser;
-    
+
     @Autowired
     private FindUser findUser;
     
@@ -50,7 +51,7 @@ public class UpdateUserIT {
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email corrigé", "MR", "fullName corrigé");
         
         // WHEN
-        Result result = updateUser.updateUser(userUpdate);
+        Result<?> result = updateUser.updateUser(userUpdate);
         
         // THEN
         assertThat(result.getResultType()).isEqualTo(ResultType.OK);
@@ -83,7 +84,7 @@ public class UpdateUserIT {
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email existant", "MR", "fullName corrigé");
         
         // WHEN
-        Result result = updateUser.updateUser(userUpdate);
+        Result<?> result = updateUser.updateUser(userUpdate);
         
         // THEN
         assertThat(result.getResultType()).isEqualTo(ResultType.FORBIDDEN);        
@@ -92,7 +93,7 @@ public class UpdateUserIT {
     private UserCreateDto unUtilisateurACreer(String email, String password, String gender, String fullName) {
         UserCreateDto userCreate = new UserCreateDto();
         userCreate.setEmail(email);
-        userCreate.setPasswordHash(password);
+        userCreate.setPasswordHash(new PasswordDto(password));
         userCreate.setGender(gender);
         userCreate.setFullName(fullName);
         return userCreate;

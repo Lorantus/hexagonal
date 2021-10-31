@@ -22,7 +22,7 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
     }
     
     @Override
-    public Result createCustomer(User user, Adresse adresse) {
+    public Result<?> createCustomer(User user, Adresse adresse) {
         return customerRepository.get(user, adresse)
                 .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà"))
                 .orElseGet(() -> {
@@ -30,9 +30,9 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
                     return TransactionResult.asSuccess();
                 });
     }
-    
+
     @Override
-    public Result updateUser(Customer customer, User user) {
+    public Result<?> updateUser(Customer customer, User user) {
         return customerRepository.get(user, customer.getAdresse())
                 .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour User donnée"))
                 .orElseGet(() -> customerRepository.get(customer.getUser(), customer.getAdresse())
@@ -43,9 +43,9 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
                         })
                         .orElse(TransactionResult.asBadRequest("Ce Customer n'existe pas")));
     }
-    
+
     @Override
-    public Result updateAdresse(Customer customer, Adresse adresse) {
+    public Result<?> updateAdresse(Customer customer, Adresse adresse) {
         return customerRepository.get(customer.getUser(), adresse)
                 .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour Adresse donnée"))
                 .orElseGet(() -> customerRepository.get(customer.getUser(), customer.getAdresse())
@@ -56,9 +56,9 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
                         })
                         .orElse(TransactionResult.asBadRequest("Ce Customer n'existe pas")));
     }
-    
+
     @Override
-    public Result deleteCustomer(User user, Adresse adresse) {
+    public Result<?> deleteCustomer(User user, Adresse adresse) {
         return customerRepository.get(user, adresse)
                 .map(found -> {
                     customerRepository.remove(found);

@@ -2,7 +2,7 @@ package com.experiment.hexagonal.core.api.model;
 
 public class UserCreateDto { 
     private String email;
-    private String passwordHash;
+    private PasswordDto passwordHash;
     private String gender;
     private String fullName;
 
@@ -14,11 +14,11 @@ public class UserCreateDto {
         this.email = email;
     }
 
-    public String getPasswordHash() {
+    public PasswordDto getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPasswordHash(String passwordHash) {
+    public void setPasswordHash(PasswordDto passwordHash) {
         this.passwordHash = passwordHash;
     }
 

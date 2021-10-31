@@ -3,8 +3,10 @@ package com.experiment.hexagonal.core.factory;
 import com.experiment.hexagonal.core.model.entity.User;
 import com.experiment.hexagonal.core.model.entity.UserId;
 import com.experiment.hexagonal.core.model.valueobject.Gender;
-import java.util.UUID;
+import com.experiment.hexagonal.core.model.valueobject.Password;
 import org.junit.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,11 +19,9 @@ public class UserFactoryTest {
         
         // WHEN
         User user = new UserFactory()
-                .buildUser(userId)
-                .withEmail("email")
-                .withPasswordHash("password")
+                .buildUser(userId, "email", "fullName")
+                .withPasswordHash(Password.create("password"))
                 .withGender(Gender.MR)
-                .withFullName("fullName")
                 .build();
         
         // THEN
@@ -35,7 +35,7 @@ public class UserFactoryTest {
                 .containsExactly(
                         userId,
                         "email",
-                        "password",
+                        Password.create("password"),
                         Gender.MR,
                         "fullName");
     }
@@ -43,7 +43,7 @@ public class UserFactoryTest {
     @Test
     public void doitRetournerUnNouveauUtilisateur() {
         // GIVEN
-        UserFactory.UserBuilder newUser = new UserFactory().buildNewUser();
+        UserFactory.UserBuilder newUser = new UserFactory().buildNewUser("login", "développeur");
                 
         // WHEN
         User user = newUser.build();
@@ -57,18 +57,16 @@ public class UserFactoryTest {
         // GIVEN
         UserId userId = UserId.create(UUID.randomUUID());
         User user = new UserFactory()
-                .buildUser(userId)
-                .withEmail("email")
-                .withPasswordHash("password")
+                .buildUser(userId, "email", "fullName")
+                .withPasswordHash(Password.create("password"))
                 .withGender(Gender.MR)
-                .withFullName("fullName")
                 .build();
         
         // WHEN
         User userUpdate = new UserFactory()
                 .updateUser(user)
                 .withEmail("email modifié")
-                .withPasswordHash("password modifié")
+                .withPasswordHash(Password.create("password modifié"))
                 .withGender(Gender.MME)
                 .withFullName("fullName modifié")
                 .update();
@@ -85,7 +83,7 @@ public class UserFactoryTest {
                 .containsExactly(
                         userId,
                         "email modifié",
-                        "password modifié",
+                        Password.create("password modifié"),
                         Gender.MME,
                         "fullName modifié");
     }

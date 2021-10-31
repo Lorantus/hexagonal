@@ -3,24 +3,26 @@ package com.experiment.hexagonal.infrastructure.repository.inMemory.adapter;
 import com.experiment.hexagonal.core.model.entity.User;
 import com.experiment.hexagonal.core.model.entity.UserId;
 import com.experiment.hexagonal.core.model.valueobject.Gender;
+import com.experiment.hexagonal.core.model.valueobject.Password;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.api.CrudInMemoryUser;
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.model.InMemoryUser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 
 @Repository("inMemoryUserRepository")
 public class InMemoryUserRepository implements UserRepository {
     private static final Function<InMemoryUser, User> USER_MAPPER = inMemoryUser -> {
                     User user = new User(UserId.create(inMemoryUser.getId()));
-                    user.setEmail(inMemoryUser.getEmail());
-                    user.setPasswordHash(inMemoryUser.getPasswordHash());
-                    user.setGender(inMemoryUser.getGender() == null ?  null : Gender.valueOf(inMemoryUser.getGender()));
+        user.setEmail(inMemoryUser.getEmail());
+        user.setPasswordHash(Password.create(inMemoryUser.getPasswordHash()));
+        user.setGender(inMemoryUser.getGender() == null ? null : Gender.valueOf(inMemoryUser.getGender()));
                     user.setFullName(inMemoryUser.getFullName());
                     return user;
                 };
@@ -61,7 +63,7 @@ public class InMemoryUserRepository implements UserRepository {
                 .orElse(new InMemoryUser(UUID.randomUUID()));
         inMemoryUser.setId(user.getId().getIdentity().toString());
         inMemoryUser.setEmail(user.getEmail());
-        inMemoryUser.setPasswordHash(user.getPasswordHash());
+        inMemoryUser.setPasswordHash(user.getPasswordHash().getRawPassword());
         inMemoryUser.setGender(user.getGender() == null ? null : user.getGender().name());
         inMemoryUser.setFullName(user.getFullName());
         crudInMemoryUser.put(inMemoryUser);

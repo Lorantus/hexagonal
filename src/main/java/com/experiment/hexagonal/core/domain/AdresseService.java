@@ -17,37 +17,43 @@ public class AdresseService implements CrudAdresse {
     private final AdresseRepository adresseRepository;
     
     @Autowired
-    public AdresseService(
-            @Qualifier("inMemoryAdresseRepository") AdresseRepository adresseRepository) {
+    public AdresseService(@Qualifier("inMemoryAdresseRepository") AdresseRepository adresseRepository) {
         this.adresseRepository = adresseRepository;
     }
-    
+
     @Override
-    public Result createAdresse(AdresseDto adresseDto) {
+    public Result<?> createAdresse(AdresseDto adresseDto) {
+        if (adresseDto.getVille().equals("")) {
+            throw new IllegalArgumentException("La adresse doit avoir une ville");
+        }
+
         return adresseRepository.findAdresseWithVille(adresseDto.getVille())
                 .map(found -> TransactionResult.asForbidden("Cette ville existe déjà"))
-                .orElseGet(()-> {
-                    Adresse adresse = Adresse.create(UUID.randomUUID());
-                    adresse.setVille(adresseDto.getVille());
+                .orElseGet(() -> {
+                    Adresse adresse = Adresse.create(UUID.randomUUID(), adresseDto.getVille());
                     adresseRepository.put(adresse);
                     return TransactionResult.asSuccess();
                 });
     }
-    
+
     @Override
-    public Result updateAdresse(AdresseDto adresseDto) {
-        IdentifiantDto identifiantDto = adresseDto.getIdentifiant();  
+    public Result<?> updateAdresse(AdresseDto adresseDto) {
+        if (adresseDto.getVille().equals("")) {
+            throw new IllegalArgumentException("L'adresse doit avoir une ville");
+        }
+
+        IdentifiantDto identifiantDto = adresseDto.getIdentifiant();
         return adresseRepository.get(identifiantDto.getId())
                 .map(adresse -> {
-                    adresse.setVille(adresseDto.getVille());
-                    adresseRepository.put(adresse);
+                    Adresse newAdresse = adresse.setVille(adresseDto.getVille());
+                    adresseRepository.put(newAdresse);
                     return TransactionResult.asSuccess();
                 })
                 .orElse(TransactionResult.asBadRequest("L'adresse n'existe pas"));
     }
-    
+
     @Override
-    public Result deleteAdresse(AdresseDto adresseDto) {
+    public Result<?> deleteAdresse(AdresseDto adresseDto) {
         IdentifiantDto identifiantDto = adresseDto.getIdentifiant();
         return adresseRepository.get(identifiantDto.getId())
                 .map(adresse -> {

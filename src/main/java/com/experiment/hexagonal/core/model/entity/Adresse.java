@@ -1,32 +1,26 @@
 package com.experiment.hexagonal.core.model.entity;
 
 import com.experiment.hexagonal.core.model.valueobject.Identity;
+
 import java.util.UUID;
 
 public class Adresse extends Identity<UUID> {
-    private String ville;
+    private final String ville;
 
-    private Adresse(UUID id) {
+    private Adresse(UUID id, String ville) {
         super(id);
-    }
-    
-    public static Adresse create(UUID uuid) {
-        return new Adresse(uuid);
-    }
-    
-    public static Adresse create(String uuid) {
-        return new Adresse(UUID.fromString(uuid));
+        this.ville = ville;
     }
 
-    public static Adresse randomId() {
-        return new Adresse(UUID.randomUUID());
+    public static Adresse create(UUID uuid, String ville) {
+        return new Adresse(uuid, ville);
     }
 
     public String getVille() {
         return ville;
     }
 
-    public void setVille(String ville) {
-        this.ville = ville;
+    public Adresse setVille(String ville) {
+        return create(getIdentity(), ville);
     }
 }

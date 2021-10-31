@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 @Repository("databaseAdresseRepository")
 public class DatabaseAdresseRepository implements AdresseRepository {
     private static final Function<DatabaseAdresse, Adresse> ADRESSE_MAPPER = databaseAdresse -> {
-                    Adresse adresse = Adresse.create(databaseAdresse.getId());
+                    Adresse adresse = Adresse.create(UUID.randomUUID(), databaseAdresse.getId());
                     adresse.setVille(databaseAdresse.getVille());
                     return adresse;
                 };

@@ -1,7 +1,8 @@
 package com.experiment.hexagonal.infrastructure.client.adapter;
 
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
 import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationAuthentification;
+import com.experiment.hexagonal.infrastructure.application.core.model.AuthentificationPrincipal;
+import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,17 +16,7 @@ public class ClientApplicationAuthentificationAdpateur implements ClientAuthenti
     }
 
     @Override
-    public void setLogin(String login) {
-        applicationAuthentification.setLogin(login);
-    }
-
-    @Override
-    public void setPasswordHash(String passwordHash) {
-        applicationAuthentification.setPasswordHash(passwordHash);
-    }
-
-    @Override
-    public boolean isAuthentified() {
-        return applicationAuthentification.isAuthentified();
+    public boolean isAuthentified(AuthentificationPrincipal authentificationPrincipal) {
+        return applicationAuthentification.isAuthentified(authentificationPrincipal);
     }
 }

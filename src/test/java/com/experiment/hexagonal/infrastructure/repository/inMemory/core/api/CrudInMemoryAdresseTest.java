@@ -2,8 +2,9 @@ package com.experiment.hexagonal.infrastructure.repository.inMemory.core.api;
 
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.domain.set.InMemorySetAdresseService;
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.model.InMemoryAdresse;
-import java.util.UUID;
 import org.junit.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +25,7 @@ public class CrudInMemoryAdresseTest {
         
         // THEN
         assertThat(adresse).extracting(InMemoryAdresse::getVille)
-                .containsExactly("ville");
+                .isEqualTo("ville");
     }
     
     @Test

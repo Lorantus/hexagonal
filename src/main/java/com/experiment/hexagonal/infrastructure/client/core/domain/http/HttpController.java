@@ -1,16 +1,13 @@
 package com.experiment.hexagonal.infrastructure.client.core.domain.http;
 
+import com.experiment.hexagonal.infrastructure.application.core.model.AuthentificationPrincipal;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientAdresse;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCreateUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCrudAdresse;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientDeleteUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientFindUserByEmail;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientUpdateUser;
-import java.util.UUID;
+import com.experiment.hexagonal.infrastructure.client.core.spi.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class HttpController {
@@ -19,7 +16,7 @@ public class HttpController {
     private final ClientUpdateUser clientUpdateUser;
     private final ClientDeleteUser clientDeleteUser;
     private final ClientFindUserByEmail clientFindUserByEmail;
-    
+
     private final ClientCrudAdresse clientCrudAdresse;
 
     @Autowired
@@ -61,23 +58,22 @@ public class HttpController {
         clientUpdateUser.setFullName(fullName);
         clientUpdateUser.updateUser();
     }
-    
+
     public void deleteUser(UUID id) {
         clientDeleteUser.setId(id);
         clientDeleteUser.deleteUser();
     }
-    
-    public void isAuthentife(String login, String password) {
-        clientAuthentification.setLogin(login);
-        clientAuthentification.setPasswordHash(password);
-        clientAuthentification.isAuthentified();
+
+    public void isAuthentifie(String login, String password) {
+        AuthentificationPrincipal authentificationPrincipal = AuthentificationPrincipal.create(login, password);
+        clientAuthentification.isAuthentified(authentificationPrincipal);
     }
-    
+
     public void createAdresse(String ville) {
         clientCrudAdresse.setVille(ville);
         clientCrudAdresse.createAdresse();
     }
-    
+
     public ClientAdresse findAdresseWithVille(String ville) {
         clientCrudAdresse.setVille(ville);
         return clientCrudAdresse.executeFind();

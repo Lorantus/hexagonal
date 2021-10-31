@@ -2,6 +2,7 @@ package com.experiment.hexagonal.core.api;
 
 import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
+import com.experiment.hexagonal.core.api.model.PasswordDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
@@ -15,7 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfigTest.class})
@@ -50,7 +51,7 @@ public class DeleteUserIT {
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToDelete.getIdentifiant(), "", "", "");
         
         // WHEN
-        Result result = deleteUser.deleteUser(userUpdate);
+        Result<?> result = deleteUser.deleteUser(userUpdate);
         
         // THEN
         assertThat(result.getResultType()).isEqualTo(ResultType.OK);
@@ -60,7 +61,7 @@ public class DeleteUserIT {
     private UserCreateDto unUtilisateurACreer(String email, String password, String gender, String fullName) {
         UserCreateDto userCreate = new UserCreateDto();
         userCreate.setEmail(email);
-        userCreate.setPasswordHash(password);
+        userCreate.setPasswordHash(new PasswordDto(password));
         userCreate.setGender(gender);
         userCreate.setFullName(fullName);
         return userCreate;

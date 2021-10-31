@@ -15,11 +15,8 @@ import java.util.function.Predicate;
 
 @Repository("inMemoryAdresseRepository")
 public class InMemoryAdresseRepository implements AdresseRepository {
-    private static final Function<InMemoryAdresse, Adresse> ADRESSE_MAPPER = inMemoryAdresse -> {
-                    Adresse adresse = Adresse.create(inMemoryAdresse.getId());
-                    adresse.setVille(inMemoryAdresse.getVille());
-                    return adresse;
-                };
+    private static final Function<InMemoryAdresse, Adresse> ADRESSE_MAPPER = inMemoryAdresse ->
+            Adresse.create(inMemoryAdresse.getId(), inMemoryAdresse.getVille());
 
     private final CrudInMemoryAdresse crudInMemoryAdresse;
     
@@ -35,8 +32,7 @@ public class InMemoryAdresseRepository implements AdresseRepository {
     }
     
     private Optional<InMemoryAdresse> findInMemoryAdresse(UUID id) {
-        String inMermoryId = id.toString();
-        return findAdresseWith(inMemoryAdresse -> inMemoryAdresse.getId().equals(inMermoryId));
+        return findAdresseWith(inMemoryAdresse -> inMemoryAdresse.getId().equals(id));
     }
 
     @Override
@@ -60,7 +56,7 @@ public class InMemoryAdresseRepository implements AdresseRepository {
     public void put(Adresse adresse) {
         InMemoryAdresse inMemoryAdresse = findInMemoryAdresse(adresse.getIdentity())
                 .orElse(new InMemoryAdresse(UUID.randomUUID()));
-        inMemoryAdresse.setId(adresse.getIdentity().toString());
+        inMemoryAdresse.setId(adresse.getIdentity());
         inMemoryAdresse.setVille(adresse.getVille());
         crudInMemoryAdresse.put(inMemoryAdresse);
     }

@@ -17,17 +17,17 @@ public class ApplicationCoreAdresseAdpateur implements APICrudAdresse {
     }
     
     @Override
-    public Result createAdresse(AdresseDto adresseDto) {
+    public Result<?> createAdresse(AdresseDto adresseDto) {
         return crudAdresse.createAdresse(adresseDto);
     }
 
     @Override
-    public Result updateAdresse(AdresseDto adresseDto) {
+    public Result<?> updateAdresse(AdresseDto adresseDto) {
         return crudAdresse.updateAdresse(adresseDto);
     }
 
     @Override
-    public Result deleteAdresse(AdresseDto adresseDto) {
+    public Result<?> deleteAdresse(AdresseDto adresseDto) {
         return crudAdresse.deleteAdresse(adresseDto);
     }
 

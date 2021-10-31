@@ -26,17 +26,17 @@ public class ApplicationCoreUserAdpateur implements APICreateUser, APIUpdateUser
     }
     
     @Override
-    public Result createUser(UserCreateDto user) {
+    public Result<?> createUser(UserCreateDto user) {
         return createUser.createUser(user);
     }
 
     @Override
-    public Result updateUser(UserUpdateDto user) {
+    public Result<?> updateUser(UserUpdateDto user) {
         return updateUser.updateUser(user);
     }
 
     @Override
-    public Result deleteUser(UserUpdateDto user) {
+    public Result<?> deleteUser(UserUpdateDto user) {
         return deleteUser.deleteUser(user);
     }
 }

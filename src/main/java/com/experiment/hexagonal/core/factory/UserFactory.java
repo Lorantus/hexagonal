@@ -3,28 +3,32 @@ package com.experiment.hexagonal.core.factory;
 import com.experiment.hexagonal.core.model.entity.User;
 import com.experiment.hexagonal.core.model.entity.UserId;
 import com.experiment.hexagonal.core.model.valueobject.Gender;
+import com.experiment.hexagonal.core.model.valueobject.Password;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserFactory {
-    
-    public UserBuilder buildUser(UserId userId) {
-        return new UserBuilder(userId);
+
+    public UserBuilder buildUser(UserId userId, String email, String fullName) {
+        return new UserBuilder(userId)
+                .withEmail(email)
+                .withFullName(fullName)
+                .withGender(Gender.X);
     }
-    
-    public UserBuilder buildNewUser() {
-        return buildUser(UserId.randomId());
+
+    public UserBuilder buildNewUser(String email, String fullName) {
+        return buildUser(UserId.randomId(), email, fullName);
     }
 
     public UserBuilder updateUser(User user) {
         return new UserBuilder(user);
     }
-    
-    public class UserBuilder {
+
+    public static class UserBuilder {
         private User user;
         private UserId userId;
         private String email;
-        private String passwordHash;
+        private Password passwordHash;
         private Gender gender;
         private String fullName;
 
@@ -41,7 +45,7 @@ public class UserFactory {
             return this;
         }
 
-        public UserBuilder withPasswordHash(String passwordHash) {
+        public UserBuilder withPasswordHash(Password passwordHash) {
             this.passwordHash = passwordHash;
             return this;
         }

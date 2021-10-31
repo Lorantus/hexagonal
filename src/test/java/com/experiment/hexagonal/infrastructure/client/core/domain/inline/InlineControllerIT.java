@@ -2,9 +2,7 @@ package com.experiment.hexagonal.infrastructure.client.core.domain.inline;
 
 import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.CrudAdresse;
-import com.experiment.hexagonal.core.domain.AdresseService;
-import com.experiment.hexagonal.core.domain.UserLoginService;
-import com.experiment.hexagonal.core.domain.UserService;
+import com.experiment.hexagonal.core.domain.*;
 import com.experiment.hexagonal.core.factory.UserFactory;
 import com.experiment.hexagonal.core.spi.AdresseRepository;
 import com.experiment.hexagonal.core.spi.UserRepository;
@@ -16,12 +14,15 @@ import com.experiment.hexagonal.infrastructure.application.core.api.*;
 import com.experiment.hexagonal.infrastructure.application.core.domain.*;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientAdresse;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientUser;
-import com.experiment.hexagonal.infrastructure.application.core.spi.*;
+import com.experiment.hexagonal.infrastructure.application.core.spi.APICrudAdresse;
+import com.experiment.hexagonal.infrastructure.application.core.spi.APIFindByEmail;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationAuthentificationAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationCrudAdresseAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationFindUserByEmailAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationUserAdpateur;
-import com.experiment.hexagonal.infrastructure.client.core.spi.*;
+import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
+import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCrudAdresse;
+import com.experiment.hexagonal.infrastructure.client.core.spi.ClientFindUserByEmail;
 import com.experiment.hexagonal.infrastructure.repository.database.adapter.DatabaseUserRepository;
 import com.experiment.hexagonal.infrastructure.repository.database.core.api.CrudDatabaseUser;
 import com.experiment.hexagonal.infrastructure.repository.database.core.domain.DatabaseUserService;
@@ -65,39 +66,33 @@ public class InlineControllerIT {
     public void setUp2() {
         CrudInMemoryUser crudInMemoryUser = new InMemorySetUserService();
         UserRepository inMemoryUserRepository = new InMemoryUserRepository(crudInMemoryUser);
-        
+
         CrudDatabaseUser crudDatabaseUser = new DatabaseUserService();
-        UserRepository databaseUserRepository = new DatabaseUserRepository(crudDatabaseUser);       
-        
+        UserRepository databaseUserRepository = new DatabaseUserRepository(crudDatabaseUser);
+
         UserLoginService userLoginService = new UserLoginService(databaseUserRepository);
-        
-        UserFactory userFactory = new UserFactory();        
-        UserService userSerivce = new UserService(inMemoryUserRepository, userFactory);
-        UserService createUser = userSerivce;
-        UserService updateUser = createUser;
-        UserService deleteUser = createUser;
-        UserService findUser = createUser;
-        
+
+        UserFactory userFactory = new UserFactory();
+        CreateUserService createUser = new CreateUserService(inMemoryUserRepository, userFactory);
+        UpdateUserService updateUser = new UpdateUserService(inMemoryUserRepository, userFactory);
+        ;
+        DeleteUserService deleteUser = new DeleteUserService(inMemoryUserRepository);
+        FindUserService findUser = new FindUserService(inMemoryUserRepository);
+
         ApplicationCoreAuthentificationAdpateur apiAuthentification = new ApplicationCoreAuthentificationAdpateur(userLoginService);
         ApplicationCoreUserAdpateur apiUser = new ApplicationCoreUserAdpateur(createUser, updateUser, deleteUser);
-        APICreateUser apiCreateUser = apiUser;
-        APIUpdateUser apiUpdateUser = apiUser;
-        APIDeleteUser apiDeleteUser = apiUser;        
         APIFindByEmail apiFindUserByEmail = new ApplicationCoreFindUserByEmailAdpateur(findUser);
-        
+
         ApplicationAuthentification applicationAuthentification = new ClientAuthentificationService(apiAuthentification);
-        ApplicationCreateUser applicationCreateUser = new ClientCreateUserService(apiCreateUser);
-        ApplicationUpdateUser applicationUpdateUser = new ClientUpdateUserService(apiUpdateUser);
-        ApplicationDeleteUser applicationDeleteUser = new ClientDeleteUserService(apiDeleteUser);
+        ApplicationCreateUser applicationCreateUser = new ClientCreateUserService(apiUser);
+        ApplicationUpdateUser applicationUpdateUser = new ClientUpdateUserService(apiUser);
+        ApplicationDeleteUser applicationDeleteUser = new ClientDeleteUserService(apiUser);
         ApplicationFindUserByEmail applicationFindUserByEmail = new ClientFindUserByEmailService(apiFindUserByEmail);
-        
+
         ClientAuthentification clientAuthentification = new ClientApplicationAuthentificationAdpateur(applicationAuthentification);
         ClientApplicationUserAdpateur applicationUserAdpateur = new ClientApplicationUserAdpateur(applicationCreateUser, applicationUpdateUser, applicationDeleteUser);
-        ClientCreateUser clientCreateUser = applicationUserAdpateur;
-        ClientUpdateUser clientUpdateUser = applicationUserAdpateur;
-        ClientDeleteUser clientDeleteUser = applicationUserAdpateur;
         ClientFindUserByEmail clientApplicationFindUserByEmail = new ClientApplicationFindUserByEmailAdpateur(applicationFindUserByEmail);
-                
+
         CrudInMemoryAdresse crudInMemoryAdresse = new InMemorySetAdresseService();
         AdresseRepository adresseRepository = new InMemoryAdresseRepository(crudInMemoryAdresse);
         CrudAdresse crudAdresse = new AdresseService(adresseRepository);
@@ -107,9 +102,9 @@ public class InlineControllerIT {
         
         controller = new InlineController(
                 clientAuthentification,
-                clientCreateUser, 
-                clientUpdateUser, 
-                clientDeleteUser,
+                applicationUserAdpateur,
+                applicationUserAdpateur,
+                applicationUserAdpateur,
                 clientApplicationFindUserByEmail,
                 clientCrudAdresse);
     }
@@ -118,10 +113,11 @@ public class InlineControllerIT {
     public void doitCreerUnUser() {
         // WHEN
         controller.createUser("email", "fullName", "password");
-        
+
         // THEN
-        assertThat(controller.findUserWithEmail("email")).extracting(ClientUser::getFullName)
-                .containsExactly("fullName");
+        assertThat(controller.findUserWithEmail("email"))
+                .extracting(ClientUser::getFullName)
+                .isEqualTo("fullName");
     }
 
     @Test
@@ -166,14 +162,16 @@ public class InlineControllerIT {
         // GIVEN
         controller.createUser("email", "fullName", "password");
         ClientUser user = controller.findUserWithEmail("email");
-                
+
         // WHEN
         controller.updateUser(user.getId(), "nouveau email", "nouveau fullName");
-        
+
         // THEN
         assertThat(controller.findUserWithEmail("email")).isNull();
-        assertThat(controller.findUserWithEmail("nouveau email")).extracting(ClientUser::getFullName)
-                .containsExactly("nouveau fullName");
+
+        assertThat(controller.findUserWithEmail("nouveau email"))
+                .extracting(ClientUser::getFullName)
+                .isEqualTo("nouveau fullName");
     }
     
     @Test
@@ -193,10 +191,11 @@ public class InlineControllerIT {
     public void doitCreerUneAdresse() {
         // WHEN
         controller.createAdresse("ville");
-        
+
         // THEN
-        assertThat(controller.findAdresseWithVille("ville")).extracting(ClientAdresse::getVille)
-                .containsExactly("ville");
+        assertThat(controller.findAdresseWithVille("ville"))
+                .extracting(ClientAdresse::getVille)
+                .isEqualTo("ville");
     }
     
     @Test
@@ -210,9 +209,10 @@ public class InlineControllerIT {
         
         // THEN
         assertThat(controller.findAdresseWithVille("ville")).isNull();
+
         assertThat(controller.findAdresseWithVille("nouvelle ville"))
                 .extracting(ClientAdresse::getVille)
-                .containsExactly("nouvelle ville");
+                .isEqualTo("nouvelle ville");
     }
     
     @Test

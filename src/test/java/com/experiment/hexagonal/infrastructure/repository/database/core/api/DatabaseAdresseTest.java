@@ -1,10 +1,10 @@
 package com.experiment.hexagonal.infrastructure.repository.database.core.api;
 
-import com.experiment.hexagonal.infrastructure.repository.database.core.api.CrudDatabaseAdresse;
 import com.experiment.hexagonal.infrastructure.repository.database.core.domain.DatabaseAdresseService;
 import com.experiment.hexagonal.infrastructure.repository.database.core.model.DatabaseAdresse;
-import java.util.UUID;
 import org.junit.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +24,7 @@ public class DatabaseAdresseTest {
         
         // THEN
         assertThat(adresse).extracting(DatabaseAdresse::getVille)
-                .containsExactly("ville");
+                .isEqualTo("ville");
     }
     
     @Test

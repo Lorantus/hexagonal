@@ -1,16 +1,13 @@
 package com.experiment.hexagonal.infrastructure.client.core.domain.inline;
 
+import com.experiment.hexagonal.infrastructure.application.core.model.AuthentificationPrincipal;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientAdresse;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCreateUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCrudAdresse;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientDeleteUser;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientFindUserByEmail;
-import com.experiment.hexagonal.infrastructure.client.core.spi.ClientUpdateUser;
-import java.util.UUID;
+import com.experiment.hexagonal.infrastructure.client.core.spi.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class InlineController {
@@ -19,7 +16,7 @@ public class InlineController {
     private final ClientUpdateUser clientUpdateUser;
     private final ClientDeleteUser clientDeleteUser;
     private final ClientFindUserByEmail clientFindUserByEmail;
-    
+
     private final ClientCrudAdresse clientCrudAdresse;
 
     @Autowired
@@ -40,6 +37,7 @@ public class InlineController {
         clientCreateUser.setEmail(email);
         clientCreateUser.setFullName(fullName);
         clientCreateUser.setPasswordHash(password);
+        clientCreateUser.setGender("X");
         clientCreateUser.createUser();
     }
     
@@ -66,9 +64,8 @@ public class InlineController {
     }
     
     public void isAuthentife(String login, String password) {
-        clientAuthentification.setLogin(login);
-        clientAuthentification.setPasswordHash(password);
-        clientAuthentification.isAuthentified();
+        AuthentificationPrincipal authentificationPrincipal = AuthentificationPrincipal.create(login, password);
+        clientAuthentification.isAuthentified(authentificationPrincipal);
     }
     
     public void createAdresse(String ville) {

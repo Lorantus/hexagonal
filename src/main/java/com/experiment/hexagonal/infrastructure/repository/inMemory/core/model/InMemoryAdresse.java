@@ -8,7 +8,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class InMemoryAdresse extends InMemoryEntity {       
-    private String id;
+    private UUID id;
     private String ville;
 
     public InMemoryAdresse(UUID uuid) {

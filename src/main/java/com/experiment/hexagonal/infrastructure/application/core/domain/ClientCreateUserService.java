@@ -1,11 +1,12 @@
 package com.experiment.hexagonal.infrastructure.application.core.domain;
 
+import com.experiment.hexagonal.core.api.model.PasswordDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
+import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationCreateUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APICreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationCreateUser;
 
 @Service
 public class ClientCreateUserService implements ApplicationCreateUser {
@@ -61,7 +62,7 @@ public class ClientCreateUserService implements ApplicationCreateUser {
     public boolean execute() {
         UserCreateDto user = new UserCreateDto();
         user.setEmail(email);
-        user.setPasswordHash(passwordHash);
+        user.setPasswordHash(new PasswordDto(passwordHash));
         user.setGender(gender);
         user.setFullName(fullName);
         return apiCreateUser.createUser(user).equals(Result.SUCCESS);

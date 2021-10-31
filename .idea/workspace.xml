@@ -1,47 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_8_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_8_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_1_10_19.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mockito_mockito_all_1_10_19.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_10_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_10_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_10_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_10_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_10_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_10_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_10_RELEASE.xml" afterDir="false" />
+    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="Ajoute quelques notions DDD">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/LoginDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/PasswordDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CreateUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/FindUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UpdateUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/aggregate/UserValidate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/valueobject/Password.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/model/ApplicationLogin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/model/ApplicationPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/model/AuthentificationPrincipal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CreateUserServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UpdateUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_10_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_10_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_10_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_10_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_10_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_3_10_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseAdresseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseAdresseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseCustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseCustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/domain/DatabaseUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/model/DatabaseUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/model/DatabaseUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagonal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hexagonal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CreateUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CrudAdresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CrudAdresse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CrudUserAdresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/CrudUserAdresse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/DeleteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/DeleteUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/UpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/UpdateUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/AuthentificationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/AuthentificationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/UserCreateDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/UserCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/AdresseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/AdresseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UserLoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UserLoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/DeleteUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/entity/Adresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/entity/Adresse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/valueobject/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/model/valueobject/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreAdresseAdpateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreAdresseAdpateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreAuthentificationAdpateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreAuthentificationAdpateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreUserAdpateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/adapter/ApplicationCoreUserAdpateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/api/ApplicationAuthentification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/api/ApplicationAuthentification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientAuthentificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientAuthentificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientCreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientCreateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIAuthentification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIAuthentification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APICreateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APICreateUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APICrudAdresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APICrudAdresse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIDeleteUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIDeleteUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIUpdateUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/spi/APIUpdateUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/adapter/ClientApplicationAuthentificationAdpateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/adapter/ClientApplicationAuthentificationAdpateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/spi/ClientAuthentification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/client/core/spi/ClientAuthentification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/adapter/DatabaseAdresseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/adapter/DatabaseAdresseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/adapter/DatabaseUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/adapter/DatabaseUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/adapter/InMemoryAdresseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/adapter/InMemoryAdresseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/adapter/InMemoryUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/adapter/InMemoryUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/core/model/InMemoryAdresse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/inMemory/core/model/InMemoryAdresse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/AuthentificationIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/AuthentificationIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/CreateUserIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/CreateUserIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/DeleteUserIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/DeleteUserIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/UpdateUserIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/api/UpdateUserIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/DeleteUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/application/core/api/ApplicationAuthentificationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/application/core/api/ApplicationAuthentificationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/repository/database/core/api/DatabaseAdresseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/repository/database/core/api/DatabaseAdresseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/repository/inMemory/core/api/CrudInMemoryAdresseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/repository/inMemory/core/api/CrudInMemoryAdresseTest.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="hexagonal" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="DatabaseUser.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/model/DatabaseUser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,6 +113,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -102,13 +164,6 @@
       </list>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
@@ -133,12 +188,16 @@
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="51" />
     <option name="y" value="25" />
     <option name="width" value="935" />
     <option name="height" value="1055" />
   </component>
+  <component name="ProjectId" id="1uq6Wy5xXnnjA6xSoFfb5xzUWcN" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -453,22 +512,25 @@
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="keymap&#9;ACTION&#9;Help.KeymapReference" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.experiment.hexagonal" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.experiment.hexagonal.core.api" />
+    <key name="CreateClassDialog.RecentsKey">
       <recent name="com.experiment.hexagonal.core.domain" />
+      <recent name="com.experiment.hexagonal" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java" />
@@ -476,93 +538,114 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.experiment.hexagonal.core.domain" />
+      <recent name="com.experiment.hexagonal.core.api" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
       <recent name="com.experiment.hexagonal" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.experiment.hexagonal.core.domain" />
+      <recent name="com.experiment.hexagonal.core.model.valueobject" />
+      <recent name="com.experiment.hexagonal.core.api.model" />
+      <recent name="com.experiment.hexagonal.infrastructure.application.core.model" />
+    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in hexagonal">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    </configuration>
-    <configuration name="All in hexagonal" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="hexagonal" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <properties />
-      <listeners />
     </configuration>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in hexagonal (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in hexagonal" type="JUnit" factoryName="JUnit" temporary="true">
+      <module name="hexagonal" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthentificationIT.doitRetournerTrueSiAuthentificationEchoueSurPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.experiment.hexagonal.core.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.experiment.hexagonal.core.api" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.core.api.AuthentificationIT" />
+      <option name="METHOD_NAME" value="doitRetournerTrueSiAuthentificationEchoueSurPassword" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpControllerIT.doitMettreAJourUneAdresse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.experiment.hexagonal.infrastructure.client.core.domain.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http.HttpControllerIT" />
+      <option name="METHOD_NAME" value="doitMettreAJourUneAdresse" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in hexagonal" />
+        <item itemvalue="JUnit.HttpControllerIT.doitMettreAJourUneAdresse" />
+        <item itemvalue="JUnit.All in hexagonal (1)" />
+        <item itemvalue="JUnit.AuthentificationIT.doitRetournerTrueSiAuthentificationEchoueSurPassword" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="" />
@@ -668,39 +751,23 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Base de dévelopement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Base de dévelopement" />
+    <MESSAGE value="Ajoute quelques notions DDD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajoute quelques notions DDD" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="6" />
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
