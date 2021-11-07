@@ -23,10 +23,6 @@ public class AdresseService implements CrudAdresse {
 
     @Override
     public Result<?> createAdresse(AdresseDto adresseDto) {
-        if (adresseDto.getVille().equals("")) {
-            throw new IllegalArgumentException("La adresse doit avoir une ville");
-        }
-
         return adresseRepository.findAdresseWithVille(adresseDto.getVille())
                 .map(found -> TransactionResult.asForbidden("Cette ville existe déjà"))
                 .orElseGet(() -> {
@@ -38,10 +34,6 @@ public class AdresseService implements CrudAdresse {
 
     @Override
     public Result<?> updateAdresse(AdresseDto adresseDto) {
-        if (adresseDto.getVille().equals("")) {
-            throw new IllegalArgumentException("L'adresse doit avoir une ville");
-        }
-
         IdentifiantDto identifiantDto = adresseDto.getIdentifiant();
         return adresseRepository.get(identifiantDto.getId())
                 .map(adresse -> {
@@ -67,10 +59,8 @@ public class AdresseService implements CrudAdresse {
     public Result<AdresseDto> findAdresseByVille(AdresseDto adresseDto) {
         return adresseRepository.findAdresseWithVille(adresseDto.getVille())
                 .map(adresse -> {
-                    AdresseDto adresseResult = new AdresseDto();
                     IdentifiantDto identifiantDto = IdentifiantDto.create(adresse.getIdentity());
-                    adresseResult.setIdentifiant(identifiantDto);
-                    adresseResult.setVille(adresseDto.getVille());
+                    AdresseDto adresseResult = new AdresseDto(identifiantDto, adresseDto.getVille());
                     return TransactionResult.asSuccess(adresseResult);
                 })
                 .orElse(TransactionResult.asBadRequest("L'adresse n'existe pas"));

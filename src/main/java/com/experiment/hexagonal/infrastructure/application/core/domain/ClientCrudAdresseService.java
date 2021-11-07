@@ -7,9 +7,10 @@ import com.experiment.hexagonal.core.api.transaction.ResultType;
 import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationCrudAdresse;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientAdresse;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APICrudAdresse;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class ClientCrudAdresseService implements ApplicationCrudAdresse {
@@ -39,29 +40,25 @@ public class ClientCrudAdresseService implements ApplicationCrudAdresse {
     
     @Override
     public boolean create() {
-        AdresseDto adresse = new AdresseDto();
+        AdresseDto adresse = new AdresseDto(ville);
         adresse.setVille(ville);
         return apiCrudAdresse.createAdresse(adresse).equals(Result.SUCCESS);
     } 
 
     @Override
     public boolean update() {
-        AdresseDto adresse = new AdresseDto();
-        adresse.setIdentifiant(IdentifiantDto.create(id));
-        adresse.setVille(ville);        
+        AdresseDto adresse = new AdresseDto(IdentifiantDto.create(id), ville);
         return apiCrudAdresse.updateAdresse(adresse).equals(Result.SUCCESS);
     }
 
     @Override
     public boolean delete() {
-        AdresseDto adresse = new AdresseDto();
-        adresse.setIdentifiant(IdentifiantDto.create(id));
+        AdresseDto adresse = new AdresseDto(IdentifiantDto.create(id), ville);
         return apiCrudAdresse.deleteAdresse(adresse).equals(Result.SUCCESS);
     }
     
     private AdresseDto findByVille() {
-        AdresseDto adresseDto = new AdresseDto();
-        adresseDto.setVille(ville);
+        AdresseDto adresseDto = new AdresseDto(IdentifiantDto.create(id), ville);
         Result<AdresseDto> result = apiCrudAdresse.findByVille(adresseDto);
         if(result.is(ResultType.OK)) {
             return result.getData();
