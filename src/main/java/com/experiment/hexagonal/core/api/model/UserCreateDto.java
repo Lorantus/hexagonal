@@ -1,25 +1,25 @@
 package com.experiment.hexagonal.core.api.model;
 
-public class UserCreateDto { 
-    private String email;
-    private PasswordDto passwordHash;
+public class UserCreateDto {
+    private final String email;
+    private final PasswordDto passwordHash;
     private String gender;
     private String fullName;
+
+    public UserCreateDto(String email, PasswordDto password) {
+        if (email.equals("")) {
+            throw new IllegalArgumentException("L'email est vide");
+        }
+        this.email = email;
+        this.passwordHash = password;
+    }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public PasswordDto getPasswordHash() {
         return passwordHash;
-    }
-
-    public void setPasswordHash(PasswordDto passwordHash) {
-        this.passwordHash = passwordHash;
     }
 
     public String getGender() {

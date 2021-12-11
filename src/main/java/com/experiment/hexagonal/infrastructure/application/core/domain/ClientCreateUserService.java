@@ -60,9 +60,7 @@ public class ClientCreateUserService implements ApplicationCreateUser {
     
     @Override
     public boolean execute() {
-        UserCreateDto user = new UserCreateDto();
-        user.setEmail(email);
-        user.setPasswordHash(new PasswordDto(passwordHash));
+        UserCreateDto user = new UserCreateDto(email, new PasswordDto(passwordHash));
         user.setGender(gender);
         user.setFullName(fullName);
         return apiCreateUser.createUser(user).equals(Result.SUCCESS);

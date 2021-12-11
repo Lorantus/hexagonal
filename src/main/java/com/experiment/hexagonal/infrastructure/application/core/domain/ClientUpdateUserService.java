@@ -3,11 +3,12 @@ package com.experiment.hexagonal.infrastructure.application.core.domain;
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.ResultType;
+import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationUpdateUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APIUpdateUser;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationUpdateUser;
+
+import java.util.UUID;
 
 @Service
 public class ClientUpdateUserService implements ApplicationUpdateUser {
@@ -61,12 +62,9 @@ public class ClientUpdateUserService implements ApplicationUpdateUser {
     
     @Override
     public boolean execute() {
-        UserUpdateDto user = new UserUpdateDto();
         IdentifiantDto userIdDto = IdentifiantDto.create(id);
-        user.setIdentifiant(userIdDto);
-        user.setEmail(email);
+        UserUpdateDto user = new UserUpdateDto(userIdDto, email, fullName);
         user.setGender(gender);
-        user.setFullName(fullName);
         return apiUpdateUser.updateUser(user).getResultType().equals(ResultType.OK);
     }
 }

@@ -2,7 +2,6 @@ package com.experiment.hexagonal.core.domain;
 
 import com.experiment.hexagonal.core.api.DeleteUser;
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
-import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,8 @@ public class DeleteUserService implements DeleteUser {
     }
 
     @Override
-    public Result<?> deleteUser(UserUpdateDto userUpdate) {
-        IdentifiantDto userIdDto = userUpdate.getIdentifiant();
-        return userRepository.get(userIdDto.getId())
+    public Result<?> deleteUser(IdentifiantDto identifiantDto) {
+        return userRepository.get(identifiantDto.getId())
                 .map(user -> {
                     userRepository.remove(user);
                     return TransactionResult.asSuccess();

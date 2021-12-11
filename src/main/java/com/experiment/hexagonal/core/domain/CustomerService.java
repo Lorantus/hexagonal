@@ -34,7 +34,7 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
     @Override
     public Result<?> updateUser(Customer customer, User user) {
         return customerRepository.get(user, customer.getAdresse())
-                .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour User donnée"))
+                .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour le User donné"))
                 .orElseGet(() -> customerRepository.get(customer.getUser(), customer.getAdresse())
                         .map(found -> {
                             customerRepository.put(found.withUser(user));
@@ -47,7 +47,7 @@ public class CustomerService implements CrudUserAdresse, FindUserAdresse {
     @Override
     public Result<?> updateAdresse(Customer customer, Adresse adresse) {
         return customerRepository.get(customer.getUser(), adresse)
-                .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour Adresse donnée"))
+                .map(found -> TransactionResult.asForbidden("Ce Customer existe déjà pour l'Adresse donnée"))
                 .orElseGet(() -> customerRepository.get(customer.getUser(), customer.getAdresse())
                         .map(found -> {
                             customerRepository.put(found.withAdresse(adresse));

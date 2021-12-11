@@ -19,15 +19,12 @@ public class FindUserService implements FindUser {
     }
 
     @Override
-    public Result<UserUpdateDto> findUserByEmail(UserUpdateDto userEmail) {
-        return userRepository.findUserWithEmail(userEmail.getEmail())
+    public Result<UserUpdateDto> findUserByEmail(String email) {
+        return userRepository.findUserWithEmail(email)
                 .map(user -> {
-                    UserUpdateDto userResult = new UserUpdateDto();
                     IdentifiantDto identifiantDto = IdentifiantDto.create(user.getId().getIdentity());
-                    userResult.setIdentifiant(identifiantDto);
-                    userResult.setEmail(user.getEmail());
+                    UserUpdateDto userResult = new UserUpdateDto(identifiantDto, user.getEmail(), user.getFullName());
                     userResult.setGender(user.getGender().name());
-                    userResult.setFullName(user.getFullName());
                     return TransactionResult.asSuccess(userResult);
                 })
                 .orElse(TransactionResult.asBadRequest("L'user n'existe pas"));

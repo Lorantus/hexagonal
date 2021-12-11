@@ -4,7 +4,7 @@ import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.model.AuthentificationDto;
 import com.experiment.hexagonal.core.api.model.LoginDto;
 import com.experiment.hexagonal.core.api.model.PasswordDto;
-import com.experiment.hexagonal.core.api.model.UserCreateDto;
+import com.experiment.hexagonal.core.domain.UserCreateDtoBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,12 +65,12 @@ public class AuthentificationIT {
         assertThat(authentified).isFalse();
     }
 
+
     private void unUtilisateur() {
-        UserCreateDto userCreate = new UserCreateDto();
-        userCreate.setEmail("login");
-        userCreate.setPasswordHash(new PasswordDto("password"));
-        userCreate.setFullName("développeur");
-        userCreate.setGender("X");
-        createUser.createUser(userCreate);
+        createUser.createUser(
+                UserCreateDtoBuilder.builder("login", "password")
+                        .withFullName("développeur")
+                        .withGender("X")
+                        .build());
     }    
 }

@@ -18,13 +18,14 @@ import java.util.function.Predicate;
 @Repository("databaseUserRepository")
 public class DatabaseUserRepository implements UserRepository {
     private static final Function<DatabaseUser, User> USER_MAPPER = databaseUser -> {
-                    User user = new User(UserId.create(databaseUser.getId()));
-        user.setEmail(databaseUser.getEmail());
-        user.setPasswordHash(Password.create(databaseUser.getPasswordHash()));
+        User user = new User(
+                UserId.create(databaseUser.getId()),
+                databaseUser.getEmail(),
+                Password.create(databaseUser.getPasswordHash()),
+                databaseUser.getFullName());
         user.setGender(databaseUser.getGender() == null ? null : Gender.valueOf(databaseUser.getGender()));
-                    user.setFullName(databaseUser.getFullName());
-                    return user;
-                };
+        return user;
+    };
     
     private final CrudDatabaseUser crudDatabaseUser;
 

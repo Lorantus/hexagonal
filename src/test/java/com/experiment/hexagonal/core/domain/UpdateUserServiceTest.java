@@ -3,22 +3,24 @@ package com.experiment.hexagonal.core.domain;
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
-import com.experiment.hexagonal.core.api.transaction.ResultType;
-import com.experiment.hexagonal.core.factory.UserFactory;
+import com.experiment.hexagonal.core.factory.UserBuilder;
 import com.experiment.hexagonal.core.model.entity.User;
 import com.experiment.hexagonal.core.model.valueobject.Gender;
 import com.experiment.hexagonal.core.model.valueobject.Password;
 import com.experiment.hexagonal.core.spi.UserRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.eq;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,42 +29,32 @@ public class UpdateUserServiceTest {
     @Mock
     private UserRepository userRepository;
 
-    @Spy
-    private final UserFactory userFactory = new UserFactory();
-
     @InjectMocks
     private UpdateUserService userService;
 
     @Captor
-    private ArgumentCaptor<User> argument;
+    private ArgumentCaptor<User> userCaptor;
 
     @Test
     public void doitMettreAJourUnUser() {
         // GIVEN
-        User user = userFactory.buildNewUser("login", "développeur")
-                .withEmail("email")
-                .withPasswordHash(Password.create("password"))
+        User user = UserBuilder.buildNewUser("email", Password.create("password"), "développeur")
                 .build();
-        when(userRepository.get(eq(user.getId().getIdentity())))
-                .thenReturn(Optional.of(user));
+        storeUser(user);
 
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(IdentifiantDto.create(user.getId().getIdentity()));
-        userUpdate.setEmail("email modifié");
+        UserUpdateDto userUpdate = new UserUpdateDto(IdentifiantDto.create(user.getId().getIdentity()), "email modifié", "fullName modifié");
         userUpdate.setGender("MR");
-        userUpdate.setFullName("fullName modifié");
 
-        when(userRepository.findUserWithEmail(eq("email modifié")))
-                .thenReturn(Optional.empty());
+        sansUserPourLEmail("email modifié");
 
         // WHEN
         Result<?> result = userService.updateUser(userUpdate);
 
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.OK);
+        assertThat(result).isSuccess();
 
-        verify(userRepository).put(argument.capture());
-        assertThat(argument.getValue())
+        verify(userRepository).put(userCaptor.capture());
+        Assertions.assertThat(userCaptor.getValue())
                 .extracting(
                         User::getEmail,
                         User::getPasswordHash,
@@ -78,51 +70,38 @@ public class UpdateUserServiceTest {
     @Test
     public void doitRetournerUneErreurSiLEmailExisteDejaLorsDeLaMiseAJourDeLUser() {
         // GIVEN        
-        User user = userFactory.buildNewUser("login", "développeur")
-                .withPasswordHash(Password.create("password"))
+        User user = UserBuilder.buildNewUser("email autre", Password.create("password"), "développeur")
                 .build();
-        when(userRepository.findUserWithEmail(eq("email autre")))
-                .thenReturn(Optional.of(user));
+        storeUserByEmail(user);
 
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(IdentifiantDto.create(UUID.randomUUID()));
-        userUpdate.setEmail("email autre");
-        userUpdate.setFullName("autre développeur");
+        UserUpdateDto userUpdate = new UserUpdateDto(IdentifiantDto.create(UUID.randomUUID()), "email autre", "autre développeur");
 
         // WHEN
         Result<?> result = userService.updateUser(userUpdate);
 
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.FORBIDDEN);
+        assertThat(result).isForbidden();
     }
 
     @Test
     public void doitMettreAJourLUserSiLEmailExisteDejaSurLeMemeUser() {
         // GIVEN        
-        User user = userFactory.buildNewUser("login", "développeur")
-                .withEmail("email")
-                .withPasswordHash(Password.create("password"))
+        User user = UserBuilder.buildNewUser("email", Password.create("password"), "développeur")
                 .build();
-        when(userRepository.get(eq(user.getId().getIdentity())))
-                .thenReturn(Optional.of(user));
+        storeUser(user);
+        storeUserByEmail(user);
 
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(IdentifiantDto.create(user.getId().getIdentity()));
-        userUpdate.setEmail("email");
+        UserUpdateDto userUpdate = new UserUpdateDto(IdentifiantDto.create(user.getId().getIdentity()), "email", "fullName modifié");
         userUpdate.setGender("MR");
-        userUpdate.setFullName("fullName modifié");
-
-        when(userRepository.findUserWithEmail(eq("email")))
-                .thenReturn(Optional.of(user));
 
         // WHEN
         Result<?> result = userService.updateUser(userUpdate);
 
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.OK);
+        assertThat(result).isSuccess();
 
-        verify(userRepository).put(argument.capture());
-        assertThat(argument.getValue())
+        verify(userRepository).put(userCaptor.capture());
+        Assertions.assertThat(userCaptor.getValue())
                 .extracting(
                         User::getEmail,
                         User::getPasswordHash,
@@ -133,5 +112,21 @@ public class UpdateUserServiceTest {
                         Password.create("password"),
                         Gender.MR,
                         "fullName modifié");
+    }
+
+
+    private void sansUserPourLEmail(String email) {
+        when(userRepository.findUserWithEmail(email))
+                .thenReturn(Optional.empty());
+    }
+
+    private void storeUserByEmail(User user) {
+        when(userRepository.findUserWithEmail(user.getEmail()))
+                .thenReturn(Optional.of(user));
+    }
+
+    private void storeUser(User user) {
+        when(userRepository.get(user.getId().getIdentity()))
+                .thenReturn(Optional.of(user));
     }
 }

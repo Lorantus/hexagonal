@@ -19,13 +19,14 @@ import java.util.function.Predicate;
 @Repository("inMemoryUserRepository")
 public class InMemoryUserRepository implements UserRepository {
     private static final Function<InMemoryUser, User> USER_MAPPER = inMemoryUser -> {
-                    User user = new User(UserId.create(inMemoryUser.getId()));
-        user.setEmail(inMemoryUser.getEmail());
-        user.setPasswordHash(Password.create(inMemoryUser.getPasswordHash()));
+        User user = new User(
+                UserId.create(inMemoryUser.getId()),
+                inMemoryUser.getEmail(),
+                Password.create(inMemoryUser.getPasswordHash()),
+                inMemoryUser.getFullName());
         user.setGender(inMemoryUser.getGender() == null ? null : Gender.valueOf(inMemoryUser.getGender()));
-                    user.setFullName(inMemoryUser.getFullName());
-                    return user;
-                };
+        return user;
+    };
 
     private final CrudInMemoryUser crudInMemoryUser;
     

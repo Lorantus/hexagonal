@@ -3,6 +3,7 @@ package com.experiment.hexagonal.infrastructure.application.adapter;
 import com.experiment.hexagonal.core.api.CreateUser;
 import com.experiment.hexagonal.core.api.DeleteUser;
 import com.experiment.hexagonal.core.api.UpdateUser;
+import com.experiment.hexagonal.core.api.model.IdentifiantDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
@@ -36,7 +37,7 @@ public class ApplicationCoreUserAdpateur implements APICreateUser, APIUpdateUser
     }
 
     @Override
-    public Result<?> deleteUser(UserUpdateDto user) {
-        return deleteUser.deleteUser(user);
+    public Result<?> deleteUser(IdentifiantDto identifiantDto) {
+        return deleteUser.deleteUser(identifiantDto);
     }
 }

@@ -4,6 +4,9 @@ public class LoginDto {
     private final String loginValue;
 
     public LoginDto(String loginValue) {
+        if (loginValue.equals("")) {
+            throw new IllegalArgumentException("Le login est vide");
+        }
         this.loginValue = loginValue;
     }
 

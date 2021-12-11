@@ -1,13 +1,13 @@
 package com.experiment.hexagonal.infrastructure.application.core.domain;
 
 import com.experiment.hexagonal.core.api.model.IdentifiantDto;
-import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.ResultType;
 import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationDeleteUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APIDeleteUser;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class ClientDeleteUserService implements ApplicationDeleteUser {
@@ -31,8 +31,6 @@ public class ClientDeleteUserService implements ApplicationDeleteUser {
 
     @Override
     public boolean execute() {
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(IdentifiantDto.create(id));
-        return apiDeleteUser.deleteUser(userUpdate).getResultType().equals(ResultType.OK);
+        return apiDeleteUser.deleteUser(IdentifiantDto.create(id)).getResultType().equals(ResultType.OK);
     }
 }

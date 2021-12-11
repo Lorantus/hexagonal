@@ -6,7 +6,6 @@ import com.experiment.hexagonal.core.api.model.PasswordDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
-import com.experiment.hexagonal.core.api.transaction.ResultType;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfigTest.class})
@@ -43,68 +42,46 @@ public class UpdateUserIT {
     @Test
     public void doitMettreAJourUnUtilisateur() {
         // GIVEN
-        createUser.createUser(unUtilisateurACreer("email", "password", "X", "fullName"));
-        UserUpdateDto userCreated = new UserUpdateDto();
-        userCreated.setEmail("email");
-        UserUpdateDto userToUpdate = findUser.findUserByEmail(userCreated).getData();        
-        
+        unUtilisateur("email", "password", "X", "fullName");
+        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").getData();
+
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email corrigé", "MR", "fullName corrigé");
-        
+
         // WHEN
         Result<?> result = updateUser.updateUser(userUpdate);
-        
+
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.OK);
-        
-        UserUpdateDto userToFind = new UserUpdateDto();
-        userToFind.setEmail("email corrigé");       
-        assertThat(findUser.findUserByEmail(userToFind).getData())
-                .extracting(
-                        userFound -> userFound.getIdentifiant().getId(),
-                        UserUpdateDto::getEmail,
-                        UserUpdateDto::getGender,
-                        UserUpdateDto::getFullName)
-                .containsOnly(
-                        userToUpdate.getIdentifiant().getId(),
-                        "email corrigé",
-                        "MR",
-                        "fullName corrigé");
+        assertThat(result).isSuccess();
     }
     
     @Test
     public void doitRetournerUneErreurSiMiseAJourUnUtilisateurAvecEmailExistant() {
         // GIVEN        
-        createUser.createUser(unUtilisateurACreer("email existant", "password", "X", "fullName"));
-        
-        createUser.createUser(unUtilisateurACreer("email", "password", "X", "fullName"));
-        UserUpdateDto user = new UserUpdateDto();
-        user.setEmail("email");
-        UserUpdateDto userToUpdate = findUser.findUserByEmail(user).getData(); 
-        
+        unUtilisateur("email existant", "password", "X", "fullName");
+
+        unUtilisateur("email", "password", "X", "fullName");
+        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").getData();
+
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email existant", "MR", "fullName corrigé");
-        
+
         // WHEN
         Result<?> result = updateUser.updateUser(userUpdate);
-        
+
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.FORBIDDEN);        
+        assertThat(result).isForbidden();
     }
 
-    private UserCreateDto unUtilisateurACreer(String email, String password, String gender, String fullName) {
-        UserCreateDto userCreate = new UserCreateDto();
-        userCreate.setEmail(email);
-        userCreate.setPasswordHash(new PasswordDto(password));
+
+    private void unUtilisateur(String email, String password, String gender, String fullName) {
+        UserCreateDto userCreate = new UserCreateDto(email, new PasswordDto(password));
         userCreate.setGender(gender);
         userCreate.setFullName(fullName);
-        return userCreate;
+        createUser.createUser(userCreate);
     }
 
     private UserUpdateDto unUtilisateurAMettreAJour(IdentifiantDto id, String email, String gender, String fullName) {
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(id);
-        userUpdate.setEmail(email);
+        UserUpdateDto userUpdate = new UserUpdateDto(id, email, fullName);
         userUpdate.setGender(gender);
-        userUpdate.setFullName(fullName);
         return userUpdate;
     }
 }

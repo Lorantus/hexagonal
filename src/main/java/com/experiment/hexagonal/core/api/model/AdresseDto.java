@@ -6,9 +6,8 @@ public class AdresseDto {
 
     public AdresseDto(IdentifiantDto identifiantDto, String ville) {
         if (ville.equals("")) {
-            throw new IllegalArgumentException("La adresse doit avoir une ville");
+            throw new IllegalArgumentException("L'adresse doit avoir une ville");
         }
-
         this.identifiantDto = identifiantDto;
         this.ville = ville;
     }

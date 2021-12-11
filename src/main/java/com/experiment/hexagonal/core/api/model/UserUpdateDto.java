@@ -1,25 +1,33 @@
 package com.experiment.hexagonal.core.api.model;
 
 public class UserUpdateDto {
-    private IdentifiantDto identifiantDto;
-    private String email;
+    private final IdentifiantDto identifiantDto;
+    private final String email;
+    private final String fullName;
     private String gender;
-    private String fullName;
-    
-    public IdentifiantDto getIdentifiant() {
-        return identifiantDto;
+
+    public UserUpdateDto(IdentifiantDto identifiantDto, String email, String fullName) {
+        if (email.equals("")) {
+            throw new IllegalArgumentException("Un utilisateur doit avoir un email");
+        }
+        if (fullName.equals("")) {
+            throw new IllegalArgumentException("Un utilisateur doit avoir un nom");
+        }
+        this.identifiantDto = identifiantDto;
+        this.email = email;
+        this.fullName = fullName;
     }
 
-    public void setIdentifiant(IdentifiantDto id) {
-        this.identifiantDto = id;
+    public IdentifiantDto getIdentifiant() {
+        return identifiantDto;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getFullName() {
+        return fullName;
     }
 
     public String getGender() {
@@ -28,13 +36,5 @@ public class UserUpdateDto {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 }

@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="Ajoute quelques notions DDD">
+    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/AdresseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/api/model/AdresseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/AdresseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/AdresseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientCrudAdresseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientCrudAdresseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CreateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UpdateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UpdateUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CreateUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CreateUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/DeleteUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/DeleteUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UpdateUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UpdateUserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +48,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -48,6 +57,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="4" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -90,6 +102,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/repository/database/core/model/DatabaseUser.java" />
       </list>
     </option>
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="DeleteUserIT.doitEffacerUnUtilisateur" />
+    </enabled-run-configurations>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -452,7 +472,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -492,15 +512,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in hexagonal (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hexagonal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in hexagonal" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="hexagonal" />
       <option name="PACKAGE_NAME" value="" />
@@ -513,7 +524,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthentificationIT.doitRetournerTrueSiAuthentificationEchoueSurPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DeleteUserIT.doitEffacerUnUtilisateur" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hexagonal" />
       <extension name="coverage">
         <pattern>
@@ -522,15 +533,15 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.experiment.hexagonal.core.api" />
-      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.core.api.AuthentificationIT" />
-      <option name="METHOD_NAME" value="doitRetournerTrueSiAuthentificationEchoueSurPassword" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.core.api.DeleteUserIT" />
+      <option name="METHOD_NAME" value="doitEffacerUnUtilisateur" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpControllerIT.doitMettreAJourUneAdresse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HttpControllerIT.doitMettreAJourUnUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hexagonal" />
       <extension name="coverage">
         <pattern>
@@ -540,7 +551,42 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http" />
       <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http.HttpControllerIT" />
-      <option name="METHOD_NAME" value="doitMettreAJourUneAdresse" />
+      <option name="METHOD_NAME" value="doitMettreAJourUnUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HttpControllerIT.doitRetournerNullSiUnUserNExistePas" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.experiment.hexagonal.infrastructure.client.core.domain.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.infrastructure.client.core.domain.http.HttpControllerIT" />
+      <option name="METHOD_NAME" value="doitRetournerNullSiUnUserNExistePas" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserBuilderTest.doitRetournerUnUtilisateurAJour" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.experiment.hexagonal.core.factory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.experiment.hexagonal.core.factory" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.core.factory.UserBuilderTest" />
+      <option name="METHOD_NAME" value="doitRetournerUnUtilisateurAJour" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -566,9 +612,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in hexagonal" />
-        <item itemvalue="JUnit.HttpControllerIT.doitMettreAJourUneAdresse" />
-        <item itemvalue="JUnit.All in hexagonal (1)" />
-        <item itemvalue="JUnit.AuthentificationIT.doitRetournerTrueSiAuthentificationEchoueSurPassword" />
+        <item itemvalue="JUnit.DeleteUserIT.doitEffacerUnUtilisateur" />
+        <item itemvalue="JUnit.HttpControllerIT.doitMettreAJourUnUser" />
+        <item itemvalue="JUnit.HttpControllerIT.doitRetournerNullSiUnUserNExistePas" />
+        <item itemvalue="JUnit.UserBuilderTest.doitRetournerUnUtilisateurAJour" />
       </list>
     </recent_temporary>
   </component>
@@ -588,7 +635,77 @@
       <option name="project" value="LOCAL" />
       <updated>1504126675057</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Valide le champ &quot;Ville&quot; d'une adresseans le Dto (domaine)">
+      <created>1636269282968</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636269282968</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Un peu plus de DDD et utilisation de builder dans les tests">
+      <created>1639219003873</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1639219003873</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639239256428</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1639239256428</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639250044680</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1639250044680</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639293195028</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1639293195028</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639293947897</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1639293947897</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639294348038</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1639294348038</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639295116137</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1639295116140</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639295170037</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1639295170037</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639295759514</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1639295759514</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -683,14 +800,31 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Base de dévelopement" />
     <MESSAGE value="Ajoute quelques notions DDD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajoute quelques notions DDD" />
+    <MESSAGE value="Valide le champ &quot;Ville&quot; d'une adresseans le Dto (domaine)" />
+    <MESSAGE value="Un peu plus de DDD et utilisation de builder dans les tests" />
+    <MESSAGE value="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientFindUserByEmailService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -9,6 +9,9 @@ public class Adresse extends Identity<UUID> {
 
     private Adresse(UUID id, String ville) {
         super(id);
+        if (ville.equals("")) {
+            throw new IllegalArgumentException("L'adresse doit avoir une ville");
+        }
         this.ville = ville;
     }
 

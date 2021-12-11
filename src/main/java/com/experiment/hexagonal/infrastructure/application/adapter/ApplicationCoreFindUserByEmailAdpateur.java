@@ -17,7 +17,7 @@ public class ApplicationCoreFindUserByEmailAdpateur implements APIFindByEmail {
     }
 
     @Override
-    public Result<UserUpdateDto> findUserByEmail(UserUpdateDto user) {
-        return findUser.findUserByEmail(user);
+    public Result<UserUpdateDto> findUserByEmail(String email) {
+        return findUser.findUserByEmail(email);
     }
 }

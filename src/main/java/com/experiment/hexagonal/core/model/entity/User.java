@@ -5,15 +5,24 @@ import com.experiment.hexagonal.core.model.valueobject.Password;
 
 import java.util.Objects;
 
-public class User {    
+public class User {
     private final UserId id;
-    private String email;
-    private Password passwordHash;
+    private final String email;
+    private final Password passwordHash;
+    private final String fullName;
     private Gender gender;
-    private String fullName;
 
-    public User(UserId id) {
+    public User(UserId id, String email, Password password, String fullName) {
+        if (email.equals("")) {
+            throw new IllegalArgumentException("Un utilisateur doit avoir un email");
+        }
+        if (fullName.equals("")) {
+            throw new IllegalArgumentException("Un utilisateur doit avoir un nom");
+        }
         this.id = id;
+        this.email = email;
+        this.passwordHash = password;
+        this.fullName = fullName;
     }
 
     public UserId getId() {
@@ -24,16 +33,8 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public Password getPasswordHash() {
         return passwordHash;
-    }
-
-    public void setPasswordHash(Password passwordHash) {
-        this.passwordHash = passwordHash;
     }
 
     public Gender getGender() {
@@ -46,10 +47,6 @@ public class User {
 
     public String getFullName() {
         return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     @Override

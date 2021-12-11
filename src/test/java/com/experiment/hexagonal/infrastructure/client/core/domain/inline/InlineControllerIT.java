@@ -3,7 +3,6 @@ package com.experiment.hexagonal.infrastructure.client.core.domain.inline;
 import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.CrudAdresse;
 import com.experiment.hexagonal.core.domain.*;
-import com.experiment.hexagonal.core.factory.UserFactory;
 import com.experiment.hexagonal.core.spi.AdresseRepository;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import com.experiment.hexagonal.infrastructure.application.adapter.ApplicationCoreAdresseAdpateur;
@@ -72,10 +71,9 @@ public class InlineControllerIT {
 
         UserLoginService userLoginService = new UserLoginService(databaseUserRepository);
 
-        UserFactory userFactory = new UserFactory();
-        CreateUserService createUser = new CreateUserService(inMemoryUserRepository, userFactory);
-        UpdateUserService updateUser = new UpdateUserService(inMemoryUserRepository, userFactory);
-        ;
+        CreateUserService createUser = new CreateUserService(inMemoryUserRepository);
+        UpdateUserService updateUser = new UpdateUserService(inMemoryUserRepository);
+
         DeleteUserService deleteUser = new DeleteUserService(inMemoryUserRepository);
         FindUserService findUser = new FindUserService(inMemoryUserRepository);
 

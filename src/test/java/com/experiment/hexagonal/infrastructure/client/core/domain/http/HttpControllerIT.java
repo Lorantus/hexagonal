@@ -3,7 +3,6 @@ package com.experiment.hexagonal.infrastructure.client.core.domain.http;
 import com.experiment.hexagonal.AppConfigTest;
 import com.experiment.hexagonal.core.api.CrudAdresse;
 import com.experiment.hexagonal.core.domain.*;
-import com.experiment.hexagonal.core.factory.UserFactory;
 import com.experiment.hexagonal.core.spi.AdresseRepository;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import com.experiment.hexagonal.infrastructure.application.adapter.ApplicationCoreAdresseAdpateur;
@@ -20,6 +19,7 @@ import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationA
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationCrudAdresseAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationFindUserByEmailAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationUserAdpateur;
+import com.experiment.hexagonal.infrastructure.client.core.domain.ClientUserAssert;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCrudAdresse;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientFindUserByEmail;
@@ -56,10 +56,9 @@ public class HttpControllerIT {
 
         UserLoginService userLoginService = new UserLoginService(databaseUserRepository);
 
-        UserFactory userFactory = new UserFactory();
-        CreateUserService createUser = new CreateUserService(inMemoryUserRepository, userFactory);
-        UpdateUserService updateUser = new UpdateUserService(inMemoryUserRepository, userFactory);
-        ;
+        CreateUserService createUser = new CreateUserService(inMemoryUserRepository);
+        UpdateUserService updateUser = new UpdateUserService(inMemoryUserRepository);
+
         DeleteUserService deleteUser = new DeleteUserService(inMemoryUserRepository);
         FindUserService findUser = new FindUserService(inMemoryUserRepository);
 
@@ -99,22 +98,22 @@ public class HttpControllerIT {
         controller.createUser("email", "password", "MR", "fullName");
 
         // THEN
-        assertThat(controller.findUserWithEmail("email"))
-                .extracting(ClientUser::getFullName)
-                .isEqualTo("fullName");
+        ClientUserAssert.assertThat(controller.findUserWithEmail("email"))
+                .hasFullName("fullName");
     }
 
     @Test
     public void doitRetournerUnUserParSonEmail() {
         // THEN
         controller.createUser("email", "password", null, "fullName");
-        
+
         // WHEN
         ClientUser clientUser = controller.findUserWithEmail("email");
-        
+
         // THEN
-        assertThat(clientUser).extracting(ClientUser::getEmail, ClientUser::getFullName)
-                .containsExactly("email", "fullName");
+        ClientUserAssert.assertThat(clientUser)
+                .hasEmail("email")
+                .hasFullName("fullName");
     }
 
     @Test
@@ -146,17 +145,15 @@ public class HttpControllerIT {
         // GIVEN
         controller.createUser("email", "password", "X", "fullName");
         ClientUser user = controller.findUserWithEmail("email");
-                
+
         // WHEN
         controller.updateUser(user.getId(), "nouveau email", "MR", "nouveau fullName");
-        
+
         // THEN
         assertThat(controller.findUserWithEmail("email")).isNull();
-        assertThat(controller.findUserWithEmail("nouveau email"))
-                .extracting(
-                    ClientUser::getGender, ClientUser::getFullName)
-                .containsExactly(
-                        "MR", "nouveau fullName");
+
+        ClientUserAssert.assertThat(controller.findUserWithEmail("nouveau email"))
+                .hasGenderAndFullName("MR", "nouveau fullName");
     }
     
     @Test

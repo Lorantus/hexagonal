@@ -6,8 +6,9 @@ import com.experiment.hexagonal.infrastructure.repository.database.core.domain.D
 import com.experiment.hexagonal.infrastructure.repository.database.core.model.DatabaseAdresse;
 import com.experiment.hexagonal.infrastructure.repository.database.core.model.DatabaseCustomer;
 import com.experiment.hexagonal.infrastructure.repository.database.core.model.DatabaseUser;
-import java.util.UUID;
 import org.junit.Test;
+
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,18 +28,19 @@ public class DatabaseCustomerTest {
         UUID adresseUuid = UUID.randomUUID();
         DatabaseAdresse inMemoryAdresse = new DatabaseAdresse(adresseUuid);
         crudDatabaseAdresse.put(inMemoryAdresse);
-        
+
         UUID customerUuid = UUID.randomUUID();
         DatabaseCustomer inMemoryCustomer = new DatabaseCustomer(customerUuid);
         inMemoryCustomer.setUserId(userUuid);
         inMemoryCustomer.setAdresseId(adresseUuid);
         crudDatabaseCustomer.put(inMemoryCustomer);
-        
+
         // WHEN
         DatabaseCustomer customer = crudDatabaseCustomer.get(customerUuid);
-        
+
         // THEN
-        assertThat(customer).extracting(DatabaseCustomer::getUserId, DatabaseCustomer::getAdresseId)
+        assertThat(customer)
+                .extracting(DatabaseCustomer::getUserId, DatabaseCustomer::getAdresseId)
                 .containsExactly(userUuid, adresseUuid);
     }
     

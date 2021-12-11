@@ -1,12 +1,9 @@
 package com.experiment.hexagonal.core.api;
 
 import com.experiment.hexagonal.AppConfigTest;
-import com.experiment.hexagonal.core.api.model.IdentifiantDto;
-import com.experiment.hexagonal.core.api.model.PasswordDto;
-import com.experiment.hexagonal.core.api.model.UserCreateDto;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
-import com.experiment.hexagonal.core.api.transaction.ResultType;
+import com.experiment.hexagonal.core.domain.UserCreateDtoBuilder;
 import com.experiment.hexagonal.core.spi.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,15 +13,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfigTest.class})
 public class DeleteUserIT {
-    
+
     @Autowired
     private DeleteUser deleteUser;
-    
+
     @Autowired
     private CreateUser createUser;
     
@@ -43,36 +41,21 @@ public class DeleteUserIT {
     @Test
     public void doitEffacerUnUtilisateur() {
         // GIVEN
-        createUser.createUser(unUtilisateurACreer("email", "password", "X", "fullName"));
-        UserUpdateDto userCreated = new UserUpdateDto();
-        userCreated.setEmail("email");
-        UserUpdateDto userToDelete = findUser.findUserByEmail(userCreated).getData();        
-        
-        UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToDelete.getIdentifiant(), "", "", "");
-        
+        unUtilisateur("email");
+        UserUpdateDto userToDelete = findUser.findUserByEmail("email").getData();
+
         // WHEN
-        Result<?> result = deleteUser.deleteUser(userUpdate);
-        
+        Result<?> result = deleteUser.deleteUser(userToDelete.getIdentifiant());
+
         // THEN
-        assertThat(result.getResultType()).isEqualTo(ResultType.OK);
-        assertThat(findUser.findUserByEmail(userCreated).getData()).isNull();
+        assertThat(result).isSuccess();
     }
 
-    private UserCreateDto unUtilisateurACreer(String email, String password, String gender, String fullName) {
-        UserCreateDto userCreate = new UserCreateDto();
-        userCreate.setEmail(email);
-        userCreate.setPasswordHash(new PasswordDto(password));
-        userCreate.setGender(gender);
-        userCreate.setFullName(fullName);
-        return userCreate;
-    }
 
-    private UserUpdateDto unUtilisateurAMettreAJour(IdentifiantDto id, String email, String gender, String fullName) {
-        UserUpdateDto userUpdate = new UserUpdateDto();
-        userUpdate.setIdentifiant(id);
-        userUpdate.setEmail(email);
-        userUpdate.setGender(gender);
-        userUpdate.setFullName(fullName);
-        return userUpdate;
+    private void unUtilisateur(String email) {
+        createUser.createUser(UserCreateDtoBuilder.builder(email, "password")
+                .withFullName("fullName")
+                .withGender("X")
+                .build());
     }
 }

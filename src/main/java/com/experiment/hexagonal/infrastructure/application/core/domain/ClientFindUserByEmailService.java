@@ -3,11 +3,11 @@ package com.experiment.hexagonal.infrastructure.application.core.domain;
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
 import com.experiment.hexagonal.core.api.transaction.ResultType;
+import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationFindUserByEmail;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APIFindByEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationFindUserByEmail;
 
 @Service
 public class ClientFindUserByEmailService implements ApplicationFindUserByEmail {
@@ -30,9 +30,7 @@ public class ClientFindUserByEmailService implements ApplicationFindUserByEmail 
     }
     
     private UserUpdateDto findByEmail() {
-        UserUpdateDto user = new UserUpdateDto();
-        user.setEmail(email);
-        Result<UserUpdateDto> result = apiFindByEmail.findUserByEmail(user);
+        Result<UserUpdateDto> result = apiFindByEmail.findUserByEmail(email);
         if(result.is(ResultType.OK)) {
             return result.getData();
         }
