@@ -31,6 +31,7 @@ public class ClientDeleteUserService implements ApplicationDeleteUser {
 
     @Override
     public boolean execute() {
-        return apiDeleteUser.deleteUser(IdentifiantDto.create(id)).getResultType().equals(ResultType.OK);
+        return apiDeleteUser.deleteUser(IdentifiantDto.create(id))
+                .is(ResultType.OK);
     }
 }

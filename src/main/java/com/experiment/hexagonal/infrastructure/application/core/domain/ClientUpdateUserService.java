@@ -65,6 +65,7 @@ public class ClientUpdateUserService implements ApplicationUpdateUser {
         IdentifiantDto userIdDto = IdentifiantDto.create(id);
         UserUpdateDto user = new UserUpdateDto(userIdDto, email, fullName);
         user.setGender(gender);
-        return apiUpdateUser.updateUser(user).getResultType().equals(ResultType.OK);
+        return apiUpdateUser.updateUser(user)
+                .is(ResultType.OK);
     }
 }

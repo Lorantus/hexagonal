@@ -43,7 +43,7 @@ public class UpdateUserIT {
     public void doitMettreAJourUnUtilisateur() {
         // GIVEN
         unUtilisateur("email", "password", "X", "fullName");
-        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").getData();
+        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").get();
 
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email corrigé", "MR", "fullName corrigé");
 
@@ -60,7 +60,7 @@ public class UpdateUserIT {
         unUtilisateur("email existant", "password", "X", "fullName");
 
         unUtilisateur("email", "password", "X", "fullName");
-        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").getData();
+        UserUpdateDto userToUpdate = findUser.findUserByEmail("email").get();
 
         UserUpdateDto userUpdate = unUtilisateurAMettreAJour(userToUpdate.getIdentifiant(), "email existant", "MR", "fullName corrigé");
 

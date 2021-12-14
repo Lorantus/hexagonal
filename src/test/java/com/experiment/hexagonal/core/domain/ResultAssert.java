@@ -17,7 +17,7 @@ public class ResultAssert<T> extends AbstractAssert<ResultAssert<T>, Result<T>> 
 
     private void extractedResult(ResultType resultType) {
         isNotNull();
-        if (!actual.getResultType().equals(resultType)) {
+        if (!actual.is(resultType)) {
             failWithMessage("Expected result to be %s but was %s", resultType, actual.getResultType());
         }
     }
@@ -49,8 +49,8 @@ public class ResultAssert<T> extends AbstractAssert<ResultAssert<T>, Result<T>> 
 
     public ResultAssert<T> hasData(T data) {
         isSuccess();
-        if ((data == null && actual.getData() != null) || !actual.getData().equals(data)) {
-            failWithMessage("Expected result to be Success with data %s but was Success with data %s", data, actual.getData());
+        if ((data == null && actual.get() != null) || !actual.get().equals(data)) {
+            failWithMessage("Expected result to be Success with data %s but was Success with data %s", data, actual.get());
         }
         return this;
     }

@@ -2,7 +2,6 @@ package com.experiment.hexagonal.infrastructure.application.core.domain;
 
 import com.experiment.hexagonal.core.api.model.UserUpdateDto;
 import com.experiment.hexagonal.core.api.transaction.Result;
-import com.experiment.hexagonal.core.api.transaction.ResultType;
 import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationFindUserByEmail;
 import com.experiment.hexagonal.infrastructure.application.core.model.ClientUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APIFindByEmail;
@@ -29,31 +28,28 @@ public class ClientFindUserByEmailService implements ApplicationFindUserByEmail 
         this.email = email;
     }
     
-    private UserUpdateDto findByEmail() {
-        Result<UserUpdateDto> result = apiFindByEmail.findUserByEmail(email);
-        if(result.is(ResultType.OK)) {
-            return result.getData();
-        }
-        return null;
+    private Result<UserUpdateDto> findByEmail() {
+        return apiFindByEmail.findUserByEmail(email);
     }
     
     @Override
     public String executeFindFullName() {
-        UserUpdateDto found = findByEmail();        
-        return null == found  ? null : found.getFullName();
+        return findByEmail()
+                .map(UserUpdateDto::getFullName)
+                .orElse(null);
     }
 
     @Override
-    public ClientUser executeFind() {        
-        UserUpdateDto found = findByEmail();
-        if(null != found) {
-            ClientUser clientUser = new ClientUser();            
-            clientUser.setId(found.getIdentifiant().getId());
-            clientUser.setEmail(found.getEmail());
-            clientUser.setGender(found.getGender());
-            clientUser.setFullName(found.getFullName());
-            return clientUser;
-        }
-        return null;
+    public ClientUser executeFind() {
+        return findByEmail()
+                .map(found -> {
+                    ClientUser clientUser = new ClientUser();
+                    clientUser.setId(found.getIdentifiant().getId());
+                    clientUser.setEmail(found.getEmail());
+                    clientUser.setGender(found.getGender());
+                    clientUser.setFullName(found.getFullName());
+                    return clientUser;
+                })
+                .orElse(null);
     }
 }

@@ -2,7 +2,7 @@ package com.experiment.hexagonal.infrastructure.application.core.domain;
 
 import com.experiment.hexagonal.core.api.model.PasswordDto;
 import com.experiment.hexagonal.core.api.model.UserCreateDto;
-import com.experiment.hexagonal.core.api.transaction.Result;
+import com.experiment.hexagonal.core.api.transaction.ResultType;
 import com.experiment.hexagonal.infrastructure.application.core.api.ApplicationCreateUser;
 import com.experiment.hexagonal.infrastructure.application.core.spi.APICreateUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +63,6 @@ public class ClientCreateUserService implements ApplicationCreateUser {
         UserCreateDto user = new UserCreateDto(email, new PasswordDto(passwordHash));
         user.setGender(gender);
         user.setFullName(fullName);
-        return apiCreateUser.createUser(user).equals(Result.SUCCESS);
+        return apiCreateUser.createUser(user).is(ResultType.OK);
     }    
 }

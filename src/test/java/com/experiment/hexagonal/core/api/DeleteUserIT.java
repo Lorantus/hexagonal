@@ -42,7 +42,8 @@ public class DeleteUserIT {
     public void doitEffacerUnUtilisateur() {
         // GIVEN
         unUtilisateur("email");
-        UserUpdateDto userToDelete = findUser.findUserByEmail("email").getData();
+        UserUpdateDto userToDelete = findUser.findUserByEmail("email")
+                .get();
 
         // WHEN
         Result<?> result = deleteUser.deleteUser(userToDelete.getIdentifiant());
