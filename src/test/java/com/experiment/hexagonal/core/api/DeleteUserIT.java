@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThatResult;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,7 +48,7 @@ public class DeleteUserIT {
         Result<?> result = deleteUser.deleteUser(userToDelete.getIdentifiant());
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
     }
 
 

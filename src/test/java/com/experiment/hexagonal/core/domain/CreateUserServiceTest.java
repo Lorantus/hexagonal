@@ -17,6 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
@@ -48,7 +49,7 @@ public class CreateUserServiceTest {
         Result<?> result = userService.createUser(userCreate);
 
         // THEN
-        ResultAssert.assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(userRepository).put(userCaptor.capture());
         assertThat(userCaptor.getValue())
@@ -80,6 +81,6 @@ public class CreateUserServiceTest {
         Result<?> result = userService.createUser(userCreate);
 
         // THEN
-        ResultAssert.assertThat(result).isForbidden();
+        assertThatResult(result).isForbidden();
     }
 }

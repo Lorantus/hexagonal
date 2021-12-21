@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CreateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/CreateUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UpdateUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/domain/UpdateUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/core/factory/UserFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CreateUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/CreateUserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/DeleteUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/DeleteUserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UpdateUserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/domain/UpdateUserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/factory/UserBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/core/model/agregate/UserAdresseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/http/HttpControllerIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/experiment/hexagonal/infrastructure/client/core/domain/inline/InlineControllerIT.java" afterDir="false" />
-    </list>
+    <list default="true" id="655259cd-e4d0-4d66-a951-81f05f10bdfc" name="Default" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +34,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ResultAsMomad" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="SOFT" />
   </component>
@@ -60,6 +52,33 @@
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="4" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1640118006" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="ResultAsMomad" />
+                    <option name="lastUsedInstant" value="1639506635" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jrt:///usr/lib/jvm/default-java!/java.base/java/util/Objects.class" root0="SKIP_INSPECTION" />
+    <setting file="jrt:///usr/lib/jvm/default-java!/java.base/java/util/Optional.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -499,7 +518,7 @@
       <recent name="com.experiment.hexagonal.infrastructure.application.core.model" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in hexagonal">
+  <component name="RunManager" selected="JUnit.UserBuilderTest.doitRetournerUnUtilisateur">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -508,18 +527,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in hexagonal" type="JUnit" factoryName="JUnit" temporary="true">
-      <module name="hexagonal" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -576,6 +583,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserBuilderTest.doitRetournerUnUtilisateur" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hexagonal" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.experiment.hexagonal.core.factory.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.experiment.hexagonal.core.factory" />
+      <option name="MAIN_CLASS_NAME" value="com.experiment.hexagonal.core.factory.UserBuilderTest" />
+      <option name="METHOD_NAME" value="doitRetournerUnUtilisateur" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserBuilderTest.doitRetournerUnUtilisateurAJour" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hexagonal" />
       <extension name="coverage">
@@ -611,11 +635,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in hexagonal" />
-        <item itemvalue="JUnit.DeleteUserIT.doitEffacerUnUtilisateur" />
-        <item itemvalue="JUnit.HttpControllerIT.doitMettreAJourUnUser" />
-        <item itemvalue="JUnit.HttpControllerIT.doitRetournerNullSiUnUserNExistePas" />
+        <item itemvalue="JUnit.UserBuilderTest.doitRetournerUnUtilisateur" />
         <item itemvalue="JUnit.UserBuilderTest.doitRetournerUnUtilisateurAJour" />
+        <item itemvalue="JUnit.HttpControllerIT.doitRetournerNullSiUnUserNExistePas" />
+        <item itemvalue="JUnit.HttpControllerIT.doitMettreAJourUnUser" />
+        <item itemvalue="JUnit.DeleteUserIT.doitEffacerUnUtilisateur" />
       </list>
     </recent_temporary>
   </component>
@@ -705,7 +729,42 @@
       <option name="project" value="LOCAL" />
       <updated>1639295759514</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests">
+      <created>1639306380423</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1639306380424</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Result d'une transaction devient un monad">
+      <created>1639507530185</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1639507530185</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Result d'une transaction devient un monad">
+      <created>1639507589734</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1639507589735</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Ajoute une domain assertion sur l'user">
+      <created>1640118984711</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1640118984711</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Ajoute une domain assertion sur l'user">
+      <created>1640512594667</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1640512594667</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -808,7 +867,8 @@
     <MESSAGE value="Valide le champ &quot;Ville&quot; d'une adresseans le Dto (domaine)" />
     <MESSAGE value="Un peu plus de DDD et utilisation de builder dans les tests" />
     <MESSAGE value="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Un peu plus de DDD, utilisation de builder et d'assertions métier dans les tests" />
+    <MESSAGE value="Ajoute une domain assertion sur l'user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajoute une domain assertion sur l'user" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -818,11 +878,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/experiment/hexagonal/infrastructure/application/core/domain/ClientFindUserByEmailService.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

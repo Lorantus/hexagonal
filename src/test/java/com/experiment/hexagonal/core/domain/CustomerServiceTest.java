@@ -16,7 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Collection;
 import java.util.Optional;
 
-import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThatResult;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -51,7 +51,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.createCustomer(user, adresse);
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(customerRepository).put(customerCaptor.capture());
         assertThat(customerCaptor.getValue())
@@ -72,7 +72,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.createCustomer(user, adresse);
 
         // THEN
-        assertThat(result).isForbidden();
+        assertThatResult(result).isForbidden();
 
         verify(customerRepository, never()).put(any(Customer.class));
     }
@@ -90,7 +90,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.updateUser(customer, newUser);
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(customerRepository).put(customerCaptor.capture());
         assertThat(customerCaptor.getValue())
@@ -116,7 +116,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.updateUser(customer, newUser);
 
         // THEN
-        assertThat(result).isForbidden();
+        assertThatResult(result).isForbidden();
 
         verify(customerRepository, never()).put(any(Customer.class));
     }
@@ -135,7 +135,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.updateAdresse(customer, newAdresse);
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(customerRepository).put(customerCaptor.capture());
         assertThat(customerCaptor.getValue())
@@ -161,7 +161,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.updateAdresse(customer, newAdresse);
 
         // THEN
-        assertThat(result).isForbidden();
+        assertThatResult(result).isForbidden();
 
         verify(customerRepository, never()).put(any(Customer.class));
     }
@@ -175,7 +175,7 @@ public class CustomerServiceTest {
         Result<?> result = customerService.deleteCustomer(user, adresse);
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(customerRepository).remove(customerCaptor.capture());
         assertThat(customerCaptor.getValue())

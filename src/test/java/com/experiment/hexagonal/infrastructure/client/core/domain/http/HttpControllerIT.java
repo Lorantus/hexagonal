@@ -19,7 +19,6 @@ import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationA
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationCrudAdresseAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationFindUserByEmailAdpateur;
 import com.experiment.hexagonal.infrastructure.client.adapter.ClientApplicationUserAdpateur;
-import com.experiment.hexagonal.infrastructure.client.core.domain.ClientUserAssert;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientAuthentification;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientCrudAdresse;
 import com.experiment.hexagonal.infrastructure.client.core.spi.ClientFindUserByEmail;
@@ -38,6 +37,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static com.experiment.hexagonal.infrastructure.client.core.domain.ClientUserAssert.assertThatClientUser;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -98,7 +98,7 @@ public class HttpControllerIT {
         controller.createUser("email", "password", "MR", "fullName");
 
         // THEN
-        ClientUserAssert.assertThat(controller.findUserWithEmail("email"))
+        assertThatClientUser(controller.findUserWithEmail("email"))
                 .hasFullName("fullName");
     }
 
@@ -111,7 +111,7 @@ public class HttpControllerIT {
         ClientUser clientUser = controller.findUserWithEmail("email");
 
         // THEN
-        ClientUserAssert.assertThat(clientUser)
+        assertThatClientUser(clientUser)
                 .hasEmail("email")
                 .hasFullName("fullName");
     }
@@ -152,7 +152,7 @@ public class HttpControllerIT {
         // THEN
         assertThat(controller.findUserWithEmail("email")).isNull();
 
-        ClientUserAssert.assertThat(controller.findUserWithEmail("nouveau email"))
+        assertThatClientUser(controller.findUserWithEmail("nouveau email"))
                 .hasGenderAndFullName("MR", "nouveau fullName");
     }
     

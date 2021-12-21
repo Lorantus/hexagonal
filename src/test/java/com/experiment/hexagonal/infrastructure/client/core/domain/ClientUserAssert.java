@@ -9,7 +9,7 @@ public class ClientUserAssert extends AbstractAssert<ClientUserAssert, ClientUse
         super(actual, ClientUserAssert.class);
     }
 
-    public static ClientUserAssert assertThat(ClientUser actual) {
+    public static ClientUserAssert assertThatClientUser(ClientUser actual) {
         return new ClientUserAssert(actual);
     }
 

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThatResult;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {AppConfigTest.class})
@@ -40,7 +40,7 @@ public class CreateUserIT {
         Result<?> result = createUser.createUser(user);
         
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
     }
     
     @Test
@@ -53,7 +53,7 @@ public class CreateUserIT {
         Result<?> result = createUser.createUser(userEnDouble);
 
         // THEN
-        assertThat(result).isForbidden();
+        assertThatResult(result).isForbidden();
     }
 
 

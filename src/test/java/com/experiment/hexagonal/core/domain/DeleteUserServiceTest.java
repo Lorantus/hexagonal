@@ -17,7 +17,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
-import static com.experiment.hexagonal.core.domain.ResultAssert.assertThat;
+import static com.experiment.hexagonal.core.domain.ResultAssert.assertThatResult;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -46,7 +46,7 @@ public class DeleteUserServiceTest {
         Result<?> result = userService.deleteUser(identifiantDto);
 
         // THEN
-        assertThat(result).isSuccess();
+        assertThatResult(result).isSuccess();
 
         verify(userRepository).remove(argument.capture());
         Assertions.assertThat(argument.getValue())

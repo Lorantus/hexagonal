@@ -10,8 +10,7 @@ public class ResultAssert<T> extends AbstractAssert<ResultAssert<T>, Result<T>> 
         super(actual, ResultAssert.class);
     }
 
-    public static <T> ResultAssert<T>
-    assertThat(Result<T> actual) {
+    public static <T> ResultAssert<T> assertThatResult(Result<T> actual) {
         return new ResultAssert<>(actual);
     }
 
