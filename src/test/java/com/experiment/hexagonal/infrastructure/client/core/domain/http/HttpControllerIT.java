@@ -93,6 +93,18 @@ public class HttpControllerIT {
     }
 
     @Test
+    public void authentifieUnUtilisateur() {
+        // GIVEN
+        controller.createUser("email", "password", "MR", "fullName");
+
+        // WHEN
+        boolean authentifie = controller.isAuthentifie("email", "password");
+
+        // THEN
+        assertThat(authentifie).isTrue();
+    }
+
+    @Test
     public void doitCreerUnUser() {
         // WHEN
         controller.createUser("email", "password", "MR", "fullName");
@@ -104,7 +116,7 @@ public class HttpControllerIT {
 
     @Test
     public void doitRetournerUnUserParSonEmail() {
-        // THEN
+        // GIVEN
         controller.createUser("email", "password", null, "fullName");
 
         // WHEN
@@ -118,7 +130,7 @@ public class HttpControllerIT {
 
     @Test
     public void doitRetournerNullSiUnUserNExistePas() {
-        // THEN
+        // GIVEN
         controller.createUser("email", "password", "MME", "fullName");
         
         // WHEN
@@ -130,7 +142,7 @@ public class HttpControllerIT {
 
     @Test
     public void doitRetournerLeFullNameDUnUserParSonEmail() {
-        // THEN
+        // GIVEN
         controller.createUser("email", "password", "X", "fullName");
         
         // WHEN

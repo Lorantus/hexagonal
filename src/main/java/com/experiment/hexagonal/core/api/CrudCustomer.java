@@ -5,7 +5,7 @@ import com.experiment.hexagonal.core.model.aggregate.Customer;
 import com.experiment.hexagonal.core.model.entity.Adresse;
 import com.experiment.hexagonal.core.model.entity.User;
 
-public interface CrudUserAdresse {
+public interface CrudCustomer {
     Result<?> createCustomer(User user, Adresse adresse);
 
     Result<?> updateUser(Customer userAdresse, User user);

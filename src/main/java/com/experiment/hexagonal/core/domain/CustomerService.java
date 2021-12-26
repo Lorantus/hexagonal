@@ -1,7 +1,7 @@
 package com.experiment.hexagonal.core.domain;
 
-import com.experiment.hexagonal.core.api.CrudUserAdresse;
-import com.experiment.hexagonal.core.api.FindUserAdresse;
+import com.experiment.hexagonal.core.api.CrudCustomer;
+import com.experiment.hexagonal.core.api.FindCustomer;
 import com.experiment.hexagonal.core.api.transaction.Result;
 import com.experiment.hexagonal.core.model.aggregate.Customer;
 import com.experiment.hexagonal.core.model.entity.Adresse;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class CustomerService implements CrudUserAdresse, FindUserAdresse {
+public class CustomerService implements CrudCustomer, FindCustomer {
     private final CustomerRepository customerRepository;
     
     @Autowired

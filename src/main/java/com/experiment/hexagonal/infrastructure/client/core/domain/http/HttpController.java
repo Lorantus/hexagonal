@@ -64,9 +64,9 @@ public class HttpController {
         clientDeleteUser.deleteUser();
     }
 
-    public void isAuthentifie(String login, String password) {
+    public boolean isAuthentifie(String login, String password) {
         AuthentificationPrincipal authentificationPrincipal = AuthentificationPrincipal.create(login, password);
-        clientAuthentification.isAuthentified(authentificationPrincipal);
+        return clientAuthentification.isAuthentified(authentificationPrincipal);
     }
 
     public void createAdresse(String ville) {

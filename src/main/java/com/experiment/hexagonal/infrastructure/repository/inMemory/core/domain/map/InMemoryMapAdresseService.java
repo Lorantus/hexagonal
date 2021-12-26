@@ -2,11 +2,12 @@ package com.experiment.hexagonal.infrastructure.repository.inMemory.core.domain.
 
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.api.CrudInMemoryAdresse;
 import com.experiment.hexagonal.infrastructure.repository.inMemory.core.model.InMemoryAdresse;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
-import org.springframework.stereotype.Service;
 
 @Service("crudInMemoryMapAdresse")
 public class InMemoryMapAdresseService implements CrudInMemoryAdresse {
@@ -27,8 +28,8 @@ public class InMemoryMapAdresseService implements CrudInMemoryAdresse {
     }
 
     @Override
-    public void put(InMemoryAdresse inMemoryUserAdresse) {        
-        datas.put(inMemoryUserAdresse.getUuid(), inMemoryUserAdresse);
+    public void put(InMemoryAdresse inMemoryCustomer) {        
+        datas.put(inMemoryCustomer.getUuid(), inMemoryCustomer);
     }
 
     @Override
