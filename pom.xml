@@ -15,7 +15,7 @@
         <mockito-all.version>1.10.19</mockito-all.version>
         <spring.version>6.1.20</spring.version>
         <lombok.version>1.18.22</lombok.version>
-        <assertj-core.version>3.21.0</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
